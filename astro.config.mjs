@@ -7,7 +7,7 @@ export default defineConfig({
 		starlight({
 			title: 'Interview',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/kevinzunigacuellar/interview-prep-solutions',
 			},
 			sidebar: [
 				{
@@ -15,6 +15,9 @@ export default defineConfig({
 					autogenerate: { directory: 'leetcode' },
 				},
 			],
+			editLink: {
+				baseUrl: 'https://github.com/kevinzunigacuellar/interview-prep-solutions/edit/main'
+			}
 		}),
 	],
 });
