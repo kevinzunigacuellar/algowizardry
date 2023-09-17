@@ -15,9 +15,13 @@ export default defineConfig({
 					autogenerate: { directory: 'leetcode' },
 				},
 			],
+			customCss: [
+				'./src/styles/custom.css',
+			],
 			editLink: {
 				baseUrl: 'https://github.com/kevinzunigacuellar/interview-prep-solutions/edit/main'
-			}
+			},
+			lastUpdated: true,
 		}),
 	],
 });
