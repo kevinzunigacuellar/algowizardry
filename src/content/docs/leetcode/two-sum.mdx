@@ -9,11 +9,19 @@ Given an array of integers `nums` and an integer `target`, return indices of the
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
+You can return the answer in any order.
+
+```plaintext
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+```
+
 ## Solution
 
-We use a key-value store to record the index of each element in `nums` as we iterate through the array. For each element, we check if the store contains the difference between the current element and the target. If it does, we return the current index and the index of the difference. If it doesn't, we add the current element to the key-value store.
+Use a key-value store to record the index of each element in `nums` as we iterate through the array. For each element, check if the store contains the difference between the current element and the target. If it does, we return the current index and the index of the difference. If it doesn't, we add the current element to the key-value store.
 
-## Code
+## Implementation
 
 <Tabs>
   <TabItem label="go">
@@ -60,9 +68,9 @@ function twoSum(nums: number[], target: number): number[] {
   </TabItem>
 </Tabs>
 
-## Explanation
+## Code breakdown
 
-First, create a key-value store to record the index of each element in `nums` as we iterate through the array.
+First, create a key-value store to record the index of each element in `nums`.
 
 <Tabs>
   <TabItem label="go">
@@ -86,7 +94,7 @@ const memory = new Map<number, number>()
   </TabItem>
 </Tabs>
 
-Next, we iterate through the array. For each element, we check if the key/value store contains the difference between the current element and the target. 
+Next, iterate through the array. For each element, check if the store contains the difference between the current element and the target.
 
 - If it does, we return the current index and the index of the difference. 
 - If it doesn't, we add the current element to the key/value store.
