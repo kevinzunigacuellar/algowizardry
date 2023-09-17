@@ -1,0 +1,126 @@
+---
+title: Two Sum
+description: Leetcode problem - Two Sum
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+## Solution
+
+We use a key-value store to record the index of each element in `nums` as we iterate through the array. For each element, we check if the store contains the difference between the current element and the target. If it does, we return the current index and the index of the difference. If it doesn't, we add the current element to the key-value store.
+
+## Code
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func twoSum(nums []int, target int) []int {
+  	m := make(map[int]int)
+		for i, num := range nums {
+			  val, ok := m[num]
+			  if ok {
+				    return []int{val, i}
+			  }
+			  m[target - num] = i
+    }
+    return []int{}
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+const twoSum = function (nums, target) {
+	const memory = new Map();
+	for (const [index, num] of nums.entries()) {
+		if (memory.has(num)) return [memory.get(num), index];
+		memory.set(target - num, index);
+	}
+};
+
+```
+
+  </TabItem>
+  <TabItem label="ts">
+```ts
+function twoSum(nums: number[], target: number): number[] {
+	const memory = new Map<number, number>()
+  for (const [index, num] of nums.entries()){
+    if (memory.has(num)) return [memory.get(num), index]
+    memory.set(target - num, index)
+  }
+};
+```
+  </TabItem>
+</Tabs>
+
+## Explanation
+
+First, create a key-value store to record the index of each element in `nums` as we iterate through the array.
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+m := make(map[int]int)
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+const memory = new Map();
+```
+
+  </TabItem>
+  <TabItem label="ts">
+```ts
+const memory = new Map<number, number>()
+```
+  </TabItem>
+</Tabs>
+
+Next, we iterate through the array. For each element, we check if the key/value store contains the difference between the current element and the target. 
+
+- If it does, we return the current index and the index of the difference. 
+- If it doesn't, we add the current element to the key/value store.
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+for i, num := range nums {
+		val, ok := m[num]
+		if ok {
+				return []int{val, i}
+		}
+		m[target - num] = i
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+for (const [index, num] of nums.entries()){
+    if (memory.has(num)) return [memory.get(num), index]
+    memory.set(target - num, index)
+  }
+```
+
+  </TabItem>
+  <TabItem label="ts">
+```ts
+for (const [index, num] of nums.entries()){
+    if (memory.has(num)) return [memory.get(num), index]
+    memory.set(target - num, index)
+  }
+```
+  </TabItem>
+</Tabs>
