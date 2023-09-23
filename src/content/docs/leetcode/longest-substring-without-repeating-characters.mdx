@@ -1,0 +1,95 @@
+---
+title: Longest Substring Without Repeating Characters
+description: Solution of Longest Substring Without Repeating Characters
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given a string s, find the length of the longest
+substring without repeating characters.
+
+```
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+```
+
+## Solution
+
+Use two pointers, `start` and `end` to keep track of the current substring. Use a map to keep track of the last seen index of each character. If the current character is already in the map, move the `start` pointer to the last seen index of the character + 1. Update the max length of the substring.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+```go
+func lengthOfLongestSubstring(s string) int {
+	m := make(map[rune]int)
+	var left, maxLen int
+
+    for right, c := range s {
+    	val, ok := m[c]
+    	if ok && val >= left {
+    		left = val + 1
+    	}
+    	m[c] = right
+    	// max() requires Go 1.21 or later
+    	maxLen = max(maxLen, right-left+1)
+    }
+    return maxLen
+
+}
+
+````
+  </TabItem>
+  <TabItem label="js">
+```js
+function lengthOfLongestSubstring(s) {
+  const map = new Map();
+  let left = 0;
+  let maxLen = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    const char = s[right];
+    if (map.has(char) && map.get(char) >= left) {
+      left = map.get(char) + 1;
+    }
+    map.set(char, right);
+    maxLen = Math.max(maxLen, right - left + 1);
+  }
+  return maxLen;
+}
+````
+
+  </TabItem>
+  <TabItem label="ts">
+```ts
+function lengthOfLongestSubstring(s: string): number {
+  const map = new Map<string,number>();
+  let left = 0;
+  let maxLen = 0;
+
+for (let right = 0; right < s.length; right++) {
+const char = s[right];
+if (map.has(char) && map.get(char) >= left) {
+left = map.get(char) + 1;
+}
+map.set(char, right);
+maxLen = Math.max(maxLen, right - left + 1);
+}
+return maxLen;
+}
+
+```
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Create a map to keep track of the last seen index of each character. Also, create two pointers, `left` and `right` to keep track of the current substring.
+
+2. Loop through the string
+	- Get the current character `char`.
+	- If the character is already in the map and the last seen index of the character is greater than or equal to `left`, move the `left` pointer to the last seen index of the character + 1.
+	- Update the last seen index of the character in the map.
+	- Update the max length of the substring.
