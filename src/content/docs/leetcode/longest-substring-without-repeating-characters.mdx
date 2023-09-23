@@ -24,20 +24,19 @@ Use two pointers, `start` and `end` to keep track of the current substring. Use 
   <TabItem label="go">
 ```go
 func lengthOfLongestSubstring(s string) int {
-	m := make(map[rune]int)
-	var left, maxLen int
+	  m := make(map[rune]int)
+	  var start, maxLen int
 
-    for right, c := range s {
-    	val, ok := m[c]
-    	if ok && val >= left {
-    		left = val + 1
-    	}
-    	m[c] = right
-    	// max() requires Go 1.21 or later
-    	maxLen = max(maxLen, right-left+1)
+    for end, c := range s {
+        val, ok := m[c]
+    	  if ok && val >= start {
+    		    start = val + 1
+    	  }
+    	  m[c] = end
+    	  // max() requires Go 1.21 or later
+    	  maxLen = max(maxLen, end - start + 1)
     }
     return maxLen
-
 }
 
 ````
@@ -69,15 +68,15 @@ function lengthOfLongestSubstring(s: string): number {
   let left = 0;
   let maxLen = 0;
 
-for (let right = 0; right < s.length; right++) {
-const char = s[right];
-if (map.has(char) && map.get(char) >= left) {
-left = map.get(char) + 1;
-}
-map.set(char, right);
-maxLen = Math.max(maxLen, right - left + 1);
-}
-return maxLen;
+  for (let right = 0; right < s.length; right++) {
+    const char = s[right];
+    if (map.has(char) && map.get(char) >= left) {
+      left = map.get(char) + 1;
+    }
+    map.set(char, right);
+    maxLen = Math.max(maxLen, right - left + 1);
+  }
+  return maxLen;
 }
 
 ```
