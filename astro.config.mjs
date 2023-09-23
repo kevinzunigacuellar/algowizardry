@@ -24,4 +24,5 @@ export default defineConfig({
 			lastUpdated: true,
 		}),
 	],
+	site: "https://algowizardry.vercel.app"
 });
