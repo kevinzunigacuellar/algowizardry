@@ -12,7 +12,7 @@ export default defineConfig({
 				replacesTitle: true,
 			},
 			social: {
-				github: 'https://github.com/kevinzunigacuellar/interview-prep-solutions',
+				github: 'https://github.com/kevinzunigacuellar/algowizardry',
 			},
 			sidebar: [
 				{
@@ -24,7 +24,7 @@ export default defineConfig({
 				'./src/styles/custom.css',
 			],
 			editLink: {
-				baseUrl: 'https://github.com/kevinzunigacuellar/interview-prep-solutions/edit/main'
+				baseUrl: 'https://github.com/kevinzunigacuellar/algowizardry/edit/main'
 			},
 			lastUpdated: true,
 		}),
