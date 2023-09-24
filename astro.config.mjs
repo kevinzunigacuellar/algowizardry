@@ -5,7 +5,12 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Interview',
+			title: 'Astro Wizardry',
+			logo: {
+				light: '/src/assets/logo-light.svg',
+				dark: '/src/assets/logo-dark.svg',
+				replacesTitle: true,
+			},
 			social: {
 				github: 'https://github.com/kevinzunigacuellar/interview-prep-solutions',
 			},
