@@ -45,11 +45,11 @@ func twoSum(nums []int, target int) []int {
 
 ```js
 const twoSum = function (nums, target) {
-	const memory = new Map();
-	for (const [index, num] of nums.entries()) {
-		if (memory.has(num)) return [memory.get(num), index];
-		memory.set(target - num, index);
-	}
+  const memory = new Map();
+  for (const [index, num] of nums.entries()) {
+    if (memory.has(num)) return [memory.get(num), index];
+    memory.set(target - num, index);
+  }
 };
 ```
 
@@ -71,6 +71,6 @@ function twoSum(nums: number[], target: number): number[] {
 
 1. Initialize a key-value store to record the index of each element in `nums`
 
-2. Iterate through `nums`. Check if the key-value store contains the difference between the current element and the target: 
-    - If it does, return the current index and the index of the difference
-    - If it doesn't, add the current element to the key-value store
+2. Iterate through `nums`. Check if the key-value store contains the difference between the current element and the target:
+   - If it does, return the current index and the index of the difference
+   - If it doesn't, add the current element to the key-value store

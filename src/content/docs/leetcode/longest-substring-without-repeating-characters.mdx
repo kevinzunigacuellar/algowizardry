@@ -22,6 +22,7 @@ Use two pointers, `start` and `end` to keep track of the current substring. Use 
 
 <Tabs>
   <TabItem label="go">
+
 ```go
 func lengthOfLongestSubstring(s string) int {
 	  m := make(map[rune]int)
@@ -37,11 +38,13 @@ func lengthOfLongestSubstring(s string) int {
     	  maxLen = max(maxLen, end - start + 1)
     }
     return maxLen
-}
 
-````
+}
+```
+
   </TabItem>
   <TabItem label="js">
+
 ```js
 function lengthOfLongestSubstring(s) {
   const map = new Map();
@@ -58,13 +61,14 @@ function lengthOfLongestSubstring(s) {
   }
   return maxLen;
 }
-````
+```
 
   </TabItem>
   <TabItem label="ts">
+
 ```ts
 function lengthOfLongestSubstring(s: string): number {
-  const map = new Map<string,number>();
+  const map = new Map<string, number>();
   let left = 0;
   let maxLen = 0;
 
@@ -78,8 +82,8 @@ function lengthOfLongestSubstring(s: string): number {
   }
   return maxLen;
 }
-
 ```
+
   </TabItem>
 </Tabs>
 
@@ -88,7 +92,7 @@ function lengthOfLongestSubstring(s: string): number {
 1. Create a map to keep track of the last seen index of each character. Also, create two pointers, `left` and `right` to keep track of the current substring.
 
 2. Loop through the string
-	- Get the current character `char`.
-	- If the character is already in the map and the last seen index of the character is greater than or equal to `left`, move the `left` pointer to the last seen index of the character + 1.
-	- Update the last seen index of the character in the map.
-	- Update the max length of the substring.
+   - Get the current character `char`.
+   - If the character is already in the map and the last seen index of the character is greater than or equal to `left`, move the `left` pointer to the last seen index of the character + 1.
+   - Update the last seen index of the character in the map.
+   - Update the max length of the substring.
