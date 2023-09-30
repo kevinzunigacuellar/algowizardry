@@ -1,0 +1,102 @@
+---
+title: Container With Most Water
+description: Solution of Container With Most Water
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
+
+![water tank image](../../../assets/container-water.jpeg)
+
+```
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7].
+In this case, the max area of water (blue section) the container can contain is 49.
+```
+
+## Solution
+
+Use two pointers, one at the start and one at the end. Calculate the area between them. Move the pointer with the smaller height inwards. Repeat until the pointers meet.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func maxArea(height []int) int {
+    var left, maxVol int
+    right := len(height) - 1
+
+    for right > left {
+        w := right - left
+        h := min(height[left], height[right])
+        maxVol = max(w*h, maxVol)
+        if height[left] > height[right] {
+            right --
+        } else {
+            left ++
+        }
+    }
+    return maxVol
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+function maxArea(height) {
+  let left = 0;
+  let right = height.length - 1;
+  let waterVolume = 0;
+  while (left < right) {
+    let w = right - left;
+    let h = Math.min(height[left], height[right]);
+    waterVolume = Math.max(w * h, waterVolume);
+    if (height[left] < height[right]) {
+      left += 1;
+    } else {
+      right -= 1;
+    }
+  }
+  return waterVolume;
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+function maxArea(height: number[]): number {
+  let left = 0;
+  let right = height.length - 1;
+  let waterVolume = 0;
+  while (left < right) {
+    let w = right - left;
+    let h = Math.min(height[left], height[right]);
+    waterVolume = Math.max(w * h, waterVolume);
+    if (height[left] < height[right]) {
+      left += 1;
+    } else {
+      right -= 1;
+    }
+  }
+  return waterVolume;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Initialize two pointers, one at the start and one at the end.
+2. Initialize a variable to store the max volume.
+3. Loop until the pointers meet.
+   1. Calculate the width and height of the container.
+   2. Calculate the volume of the container.
+   3. Update the max volume.
+   4. Move the pointer with the smaller height inwards.

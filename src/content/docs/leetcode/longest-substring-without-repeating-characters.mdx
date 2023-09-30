@@ -89,10 +89,9 @@ function lengthOfLongestSubstring(s: string): number {
 
 ## Pseudocode
 
-1. Create a map to keep track of the last seen index of each character. Also, create two pointers, `left` and `right` to keep track of the current substring.
-
-2. Loop through the string
-   - Get the current character `char`.
-   - If the character is already in the map and the last seen index of the character is greater than or equal to `left`, move the `left` pointer to the last seen index of the character + 1.
-   - Update the last seen index of the character in the map.
-   - Update the max length of the substring.
+1. Create a map to keep track of the last seen index of each character.
+2. Create two pointers, `left` and `right` to keep track of the current substring.
+3. Iterate through the string.
+   1. If the current character is already in the map, move the `left` pointer to the last seen index of the character + 1. If the character is not in the map, add it to the map.
+   2. Update the max length of the substring.
+4. Return the max length.
