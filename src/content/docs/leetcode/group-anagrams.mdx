@@ -1,0 +1,122 @@
+---
+title: Group anagrams
+description: Solution to group anagrams
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+```
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+## Solution
+
+To solve this problem, you need to first understand what an anagram is. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. So, for example, the word `eat` is an anagram of `tea` and `ate`.
+
+First, create a map to store the anagrams. The key for the map will be a unique key for each anagram. The value for the map will be an array of strings that are anagrams of each other.
+
+Iterate through the array of strings and create a unique key using an array of 26 characters. The key is created by iterating through each character in the string and incrementing the value at the index of the character in the array.
+
+For example, given the following strings `[eat, tea, ate]`, the key for each string would be as follows:
+
+```js
+eat -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
+tea -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
+ate -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
+```
+
+As you can see, the key for each string is the same. This is because each string has the same characters.
+
+Once you have the key, you can add the string to the map.
+
+If the key already exists in the map, then you can add the string to the array of strings for that key. If the key does not exist in the map, then you can create a new array with the string and add it to the map.
+
+Once you have added all the strings to the map, you can return the values of the map as an array.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func groupAnagrams(strs []string) [][]string {
+    anagrams := make(map[[26]int][]string)
+
+	  for _, word := range strs {
+		    key := [26]int{}
+		    for _, ch := range word {
+			      key[ch-'a'] += 1
+		    }
+		    anagrams[key] = append(anagrams[key], word)
+	  }
+
+	  result := make([][]string, 0, len(anagrams))
+	  for _, group := range anagrams {
+		    result = append(result, group)
+	  }
+
+	return result
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+function groupAnagrams(strs) {
+  const anagrams = new Map();
+  const a_ = "a".charCodeAt(0);
+
+  for (const word of strs) {
+    const arr = new Array(26).fill(0);
+    for (const letter of word) {
+      const index = letter.charCodeAt(0) - a_;
+      arr[index] += 1;
+    }
+    const key = arr.join("-");
+    const group = anagrams.get(key) ?? [];
+    group.push(word);
+    anagrams.set(key, group);
+  }
+  return Array.from(anagrams.values());
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+function groupAnagrams(strs: string[]): string[][] {
+  const anagrams = new Map<string, string[]>();
+  const a_ = "a".charCodeAt(0);
+
+  for (const word of strs) {
+    const arr = new Array(26).fill(0);
+    for (const letter of word) {
+      const index = letter.charCodeAt(0) - a_;
+      arr[index] += 1;
+    }
+    const key = arr.join("-");
+    const group = anagrams.get(key) ?? [];
+    group.push(word);
+    anagrams.set(key, group);
+  }
+  return Array.from(anagrams.values());
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Create a map to store the anagrams
+2. Iterate through the array of strings
+3. Create a unique key for each string using an array of 26 characters
+4. Add the string to the map using the key
+5. Return the values of the map as an array
