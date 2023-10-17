@@ -1,0 +1,127 @@
+---
+title: Valid Parentheses
+description: Solution for Valid Parentheses
+difficulty: easy
+problemUrl: https://leetcode.com/problems/valid-parentheses/
+data-structures:
+  - "stack"
+  - "hash table"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+
+An input string is valid if:
+
+1. Open brackets must be closed by the same type of brackets.
+2. Open brackets must be closed in the correct order.
+3. Every close bracket must have a corresponding open bracket.
+
+```
+Input: s = "()"
+Output: true
+
+Input: s = "()[]{}"
+Output: true
+
+Input: s = "(]"
+Output: false
+```
+
+## Solution
+
+Use a stack to store the open brackets. When you encounter a close bracket, pop the stack and check if the open bracket matches the close bracket. If the open bracket does not match the close bracket, return false. If the stack is empty, return true.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func isValid(s string) bool {
+  bracketPairs := map[rune]rune{
+    '}': '{',
+    ']': '[',
+    ')': '(',
+  }
+  stack := []rune{}
+
+  for _, item := range s {
+    if _, ok := bracketPairs[item]; !ok {
+      stack = append(stack, item)
+    } else {
+      lastItemInStack := stack[len(stack)-1]
+      stack = stack[:len(stack)-1]
+      if lastItemInStack != bracketPairs[item] {
+        return false
+      }
+    }
+  }
+  return len(stack) == 0
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+function isValid(s) {
+  const bracketPairs = new Map([
+    ["}", "{"],
+    ["]", "["],
+    [")", "("],
+  ]);
+  const stack = [];
+
+  for (const item of s) {
+    if (!bracketPairs.has(item)) {
+      stack.push(item);
+    } else {
+      const lastItemInStack = stack.pop();
+      if (lastItemInStack !== bracketPairs.get(item)) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+function isValid(s: string): boolean {
+  const bracketPairs = new Map([
+    ["}", "{"],
+    ["]", "["],
+    [")", "("],
+  ]);
+  const stack = [];
+
+  for (const item of s) {
+    if (!bracketPairs.has(item)) {
+      stack.push(item);
+    } else {
+      const lastItemInStack = stack.pop();
+      if (lastItemInStack !== bracketPairs.get(item)) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Create a stack to store the open brackets and a map to store the open and close brackets.
+2. Loop through the string.
+3. If the current character is an open bracket, push it to the stack.
+4. If the current character is a close bracket, pop the stack and check if the open bracket matches the close bracket.
+5. If the open bracket does not match the close bracket, return false.
+6. If the stack is empty, return true.
