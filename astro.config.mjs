@@ -16,15 +16,22 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Leetcode",
-          autogenerate: { directory: "leetcode" },
+          label: "Two Pointers",
+          autogenerate: { directory: "two-pointers" },
+        },
+        {
+          label: "Hash Table",
+          autogenerate: { directory: "hash-table" },
+        },
+        {
+          label: "Stack",
+          autogenerate: { directory: "stack" },
         },
       ],
       customCss: ["./src/styles/custom.css"],
       editLink: {
         baseUrl: "https://github.com/kevinzunigacuellar/algowizardry/edit/main",
       },
-      lastUpdated: true,
     }),
   ],
   site: "https://algowizardry.vercel.app",

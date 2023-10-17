@@ -1,6 +1,10 @@
 ---
 title: Container With Most Water
 description: Solution of Container With Most Water
+difficulty: medium
+problemUrl: https://leetcode.com/problems/container-with-most-water
+data-structures:
+  - "two pointers"
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -95,8 +99,9 @@ function maxArea(height: number[]): number {
 
 1. Initialize two pointers, one at the start and one at the end.
 2. Initialize a variable to store the max volume.
-3. Loop until the pointers meet.
+3. While the pointers don't meet:
    1. Calculate the width and height of the container.
    2. Calculate the volume of the container.
    3. Update the max volume.
    4. Move the pointer with the smaller height inwards.
+4. Return the max volume.

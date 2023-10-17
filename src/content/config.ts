@@ -1,7 +1,15 @@
-import { defineCollection } from "astro:content";
-import { docsSchema, i18nSchema } from "@astrojs/starlight/schema";
+import { defineCollection, z } from "astro:content";
+import { docsSchema } from "@astrojs/starlight/schema";
 
 export const collections = {
-  docs: defineCollection({ schema: docsSchema() }),
-  i18n: defineCollection({ type: "data", schema: i18nSchema() }),
+  docs: defineCollection({
+    schema: (ctx) =>
+      docsSchema()(ctx).extend({
+        problemUrl: z.string().url().optional(),
+        difficulty: z.enum(["easy", "medium", "hard"]).optional(),
+        "data-structures": z
+          .array(z.enum(["two pointers", "hash table", "stack"]))
+          .optional(),
+      }),
+  }),
 };

@@ -1,6 +1,10 @@
 ---
 title: Longest Substring Without Repeating Characters
 description: Solution of Longest Substring Without Repeating Characters
+difficulty: medium
+problemUrl: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+data-structures:
+  - "two pointers"
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -91,7 +95,8 @@ function lengthOfLongestSubstring(s: string): number {
 
 1. Create a map to keep track of the last seen index of each character.
 2. Create two pointers, `left` and `right` to keep track of the current substring.
-3. Iterate through the string.
-   1. If the current character is already in the map, move the `left` pointer to the last seen index of the character + 1. If the character is not in the map, add it to the map.
-   2. Update the max length of the substring.
-4. Return the max length.
+3. Loop through the string from left to right.
+   1. If the current character is already in the map and the last seen index of the character is greater than or equal to the `left` pointer, move the `left` pointer to the last seen index of the character + 1.
+   2. Update the last seen index of the character.
+   3. Update the max length of the substring.
+4. Return the max length of the substring.
