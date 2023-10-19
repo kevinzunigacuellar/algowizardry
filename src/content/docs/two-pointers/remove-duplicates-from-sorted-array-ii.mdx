@@ -1,0 +1,99 @@
+---
+title: Remove Duplicates from Sorted Array II
+description: Solution of Remove Duplicates from Sorted Array II
+difficulty: medium
+problemUrl: https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii
+dataStructures:
+  - "hash table"
+  - "two pointers"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given an integer array `nums` sorted in **non-decreasing order**, remove some duplicates in-place such that each unique element appears **at most twice**. The **relative order** of the elements should be kept the **same**.
+
+Return the number of unique elements `k` after removing the duplicates.
+
+```
+Input: nums = [1,1,1,2,2,3]
+Output: 5, nums = [1,1,2,2,3,_]
+
+Input: nums = [0,0,1,1,1,1,2,3,3]
+Output: 7, nums = [0,0,1,1,2,3,3,_]
+```
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func removeDuplicates(nums []int) int {
+    counter := make(map[int]int)
+    k := 0
+
+    for _, num := range nums {
+        if counter[num] < 2 {
+            counter[num]++
+            nums[k] = num
+            k++
+        }
+    }
+    return k
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+function removeDuplicates(nums) {
+  const memory = new Map();
+  let k = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let curr = memory.get(nums[i]) ?? 0;
+    if (curr < 2) {
+      memory.set(nums[i], curr + 1);
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+function removeDuplicates(nums: number[]): number {
+  const memory = new Map<number, number>();
+  let k = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let curr = memory.get(nums[i]) ?? 0;
+    if (curr < 2) {
+      memory.set(nums[i], curr + 1);
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Create a map to store the number of occurrences of each number
+2. Create a variable `k` to track the number of unique elements
+3. Loop through the array, if the number of occurrences of the current number is less than 2
+   1. Increment the number of occurrences of the current number
+   2. Set the value of the current number at index `k`
+   3. Increment `k`
+
+## Time and Space Complexity
+
+- **Time Complexity:** `O(n)` where `n` is the length of the string.
+- **Space Complexity:** `O(n)` where `n` is the length of the string.
