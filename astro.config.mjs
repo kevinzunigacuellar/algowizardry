@@ -32,6 +32,9 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/kevinzunigacuellar/algowizardry/edit/main",
       },
+      components: {
+        MarkdownContent: "./src/components/MarkdownContentWrapper.astro",
+      },
     }),
   ],
   site: "https://algowizardry.vercel.app",

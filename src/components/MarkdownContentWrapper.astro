@@ -1,0 +1,70 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+
+const { difficulty, problemUrl, template } = Astro.props.entry.data;
+---
+
+<Default {...Astro.props}>
+  {
+    template === "doc" && (
+      <ul class="page-metadata">
+        <li class:list={["difficulty", difficulty]}>{difficulty}</li>
+        <li>
+          <a href={problemUrl}>Problem URL</a>
+        </li>
+      </ul>
+    )
+  }
+  <slot />
+</Default>
+<style>
+  .page-metadata {
+    --light-green: #bbf7d0;
+    --dark-green: #15803d;
+    --light-yellow: #fef08a;
+    --dark-yellow: #854d0e;
+    --light-red: #fecaca;
+    --dark-red: #991b1b;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    list-style: none;
+    padding: 0;
+  }
+  .page-metadata .difficulty {
+    font-weight: 500;
+    border-radius: 0.25rem;
+    text-transform: capitalize;
+    padding-inline: 0.5rem;
+    background-color: var(--difficulty-bg-color);
+    color: var(--difficulty-text-color, white);
+  }
+
+  .easy {
+    --difficulty-bg-color: var(--dark-green);
+  }
+
+  .medium {
+    --difficulty-bg-color: var(--dark-yellow);
+  }
+
+  .hard {
+    --difficulty-bg-color: var(--dark-red);
+  }
+
+  :global([data-theme="light"]) .easy {
+    --difficulty-text-color: var(--dark-green);
+    --difficulty-bg-color: var(--light-green);
+  }
+
+  :global([data-theme="light"]) .medium {
+    --difficulty-text-color: var(--dark-yellow);
+    --difficulty-bg-color: var(--light-yellow);
+  }
+
+  :global([data-theme="light"]) .hard {
+    --difficulty-text-color: var(--dark-red);
+    --difficulty-bg-color: var(--light-red);
+  }
+</style>
