@@ -7,7 +7,7 @@ export const collections = {
       docsSchema()(ctx).extend({
         problemUrl: z.string().url().optional(),
         difficulty: z.enum(["easy", "medium", "hard"]).optional(),
-        "data-structures": z
+        dataStructures: z
           .array(z.enum(["two pointers", "hash table", "stack"]))
           .optional(),
       }),
