@@ -2,17 +2,26 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 
-const { difficulty, problemUrl, template } = Astro.props.entry.data;
+const { difficulty, problemUrl, template, dataStructures } =
+  Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
   {
     template === "doc" && (
       <ul class="page-metadata">
-        <li class:list={["difficulty", difficulty]}>{difficulty}</li>
         <li>
-          <a href={problemUrl}>Problem URL</a>
+          <a href={problemUrl} class:list={["difficulty", difficulty]}>
+            {difficulty}
+          </a>
         </li>
+        {dataStructures?.map((item) => (
+          <li>
+            <a href={problemUrl} class="tag">
+              {item}
+            </a>
+          </li>
+        ))}
       </ul>
     )
   }
@@ -32,39 +41,71 @@ const { difficulty, problemUrl, template } = Astro.props.entry.data;
     list-style: none;
     padding: 0;
   }
-  .page-metadata .difficulty {
-    font-weight: 500;
+
+  .page-metadata a {
+    display: block;
     border-radius: 0.25rem;
     text-transform: capitalize;
     padding-inline: 0.5rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+  }
+
+  .page-metadata .tag {
+    border-color: var(--sl-color-gray-5);
+    color: var(--sl-color-gray-3);
+  }
+
+  .page-metadata .tag:hover {
+    border-color: var(--sl-color-gray-3);
+    color: var(--sl-color-gray-2);
+  }
+
+  .page-metadata .difficulty {
+    font-weight: 500;
     background-color: var(--difficulty-bg-color);
-    color: var(--difficulty-text-color, white);
+    color: var(--difficulty-text-color);
+  }
+
+  .page-metadata .difficulty:hover {
+    color: var(--difficulty-text-color);
+    border-color: var(--difficulty-text-color);
+    border-color: var(--difficulty-border-color);
   }
 
   .easy {
     --difficulty-bg-color: var(--dark-green);
+    --difficulty-text-color: var(--light-green);
+    --difficulty-border-color: #4ade80;
   }
 
   .medium {
     --difficulty-bg-color: var(--dark-yellow);
+    --difficulty-text-color: var(--light-yellow);
+    --difficulty-border-color: #ca8a04;
   }
 
   .hard {
     --difficulty-bg-color: var(--dark-red);
+    --difficulty-text-color: var(--light-red);
+    --difficulty-border-color: #ef4444;
   }
 
   :global([data-theme="light"]) .easy {
     --difficulty-text-color: var(--dark-green);
     --difficulty-bg-color: var(--light-green);
+    --difficulty-border-color: #22c55e;
   }
 
   :global([data-theme="light"]) .medium {
     --difficulty-text-color: var(--dark-yellow);
     --difficulty-bg-color: var(--light-yellow);
+    --difficulty-border-color: #eab308;
   }
 
   :global([data-theme="light"]) .hard {
     --difficulty-text-color: var(--dark-red);
     --difficulty-bg-color: var(--light-red);
+    --difficulty-border-color: #f87171;
   }
 </style>
