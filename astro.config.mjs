@@ -27,6 +27,10 @@ export default defineConfig({
           label: "Stack",
           autogenerate: { directory: "stack" },
         },
+        {
+          label: "Indexes",
+          autogenerate: { directory: "indexes" },
+        }
       ],
       customCss: ["./src/styles/custom.css"],
       editLink: {

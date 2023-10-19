@@ -2,22 +2,27 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 
-const { difficulty, problemUrl, template, dataStructures } =
-  Astro.props.entry.data;
+const { difficulty, dataStructures } = Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
   {
-    template === "doc" && (
+    difficulty && dataStructures && (
       <ul class="page-metadata">
         <li>
-          <a href={problemUrl} class:list={["difficulty", difficulty]}>
+          <a
+            href={`/indexes/difficulty/#${difficulty}`}
+            class:list={["difficulty", difficulty]}
+          >
             {difficulty}
           </a>
         </li>
         {dataStructures?.map((item) => (
           <li>
-            <a href={problemUrl} class="tag">
+            <a
+              href={`/indexes/data-structure/#${item.replace(/\s/g, "-")}`}
+              class="tag"
+            >
               {item}
             </a>
           </li>
