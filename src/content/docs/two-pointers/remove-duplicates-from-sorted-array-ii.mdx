@@ -22,6 +22,10 @@ Input: nums = [0,0,1,1,1,1,2,3,3]
 Output: 7, nums = [0,0,1,1,2,3,3,_]
 ```
 
+## Solution
+
+Use a map to store the number of occurrences of each number. Loop through the array, if the number of occurrences of the current number is less than 2, increment the number of occurrences of the current number, set the value of the current number at index `k`, and increment `k`.
+
 ## Implementation
 
 <Tabs>
@@ -93,7 +97,7 @@ function removeDuplicates(nums: number[]): number {
    2. Set the value of the current number at index `k`
    3. Increment `k`
 
-## Time and Space Complexity
+## Complexity Analysis
 
-- **Time Complexity:** `O(n)` where `n` is the length of the string.
-- **Space Complexity:** `O(n)` where `n` is the length of the string.
+- **Time Complexity:** `O(n)`. You are looping through the array once.
+- **Space Complexity:** `O(n)`. You are creating a map to store the number of occurrences of each number.
