@@ -1,0 +1,109 @@
+---
+title: Merge Sorted Array
+description: Solution of Merge Sorted Array
+difficulty: easy
+problemUrl: https://leetcode.com/problems/merge-sorted-array
+dataStructures:
+  - "two pointers"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.
+
+**Merge** `nums1` and `nums2` into a single array sorted in **non-decreasing order**.
+
+```
+Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+Output: [1,2,2,3,5,6]
+```
+
+## Solution
+
+Use two pointers to iterate over the arrays from the end. Compare the last element of both arrays and put the larger element at the end of the first array. Repeat until all elements are merged.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="go">
+
+```go
+func merge(nums1 []int, m int, nums2 []int, n int) {
+    // start from the end of the array
+    i := m + n - 1
+    m--
+    n--
+
+    for n >= 0 {
+        if m >= 0 && nums1[m] > nums2[n] {
+            nums1[i] = nums1[m]
+            m--
+        } else {
+            nums1[i] = nums2[n]
+            n--
+        }
+        i--
+    }
+}
+```
+
+  </TabItem>
+  <TabItem label="js">
+
+```js
+function merge(nums1, m, nums2, n) {
+  // start from the end of the array
+  let i = m + n - 1;
+  m--;
+  n--;
+
+  while (n >= 0) {
+    if (m >= 0 && nums1[m] > nums2[n]) {
+      nums1[i] = nums1[m];
+      m--;
+    } else {
+      nums1[i] = nums2[n];
+      n--;
+    }
+    i--;
+  }
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+  // start from the end of the array
+  let i = m + n - 1;
+  m--;
+  n--;
+
+  while (n >= 0) {
+    if (m >= 0 && nums1[m] > nums2[n]) {
+      nums1[i] = nums1[m];
+      m--;
+    } else {
+      nums1[i] = nums2[n];
+      n--;
+    }
+    i--;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Start from the end of the array.
+2. Compare the last element of both arrays.
+3. Put the larger element at the end of the first array.
+4. Repeat until all elements are merged.
+
+## Complexity Analysis
+
+- **Time complexity**: `O(n)`. We are iterating over all the elements of the array.
+- **Space complexity**: `O(1)`. We are not using any extra space.
