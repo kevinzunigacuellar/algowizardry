@@ -5,7 +5,7 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "Astro Wizardry",
+      title: "AlgoWizardry",
       logo: {
         light: "/src/assets/logo-light.svg",
         dark: "/src/assets/logo-dark.svg",
