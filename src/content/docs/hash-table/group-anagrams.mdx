@@ -13,7 +13,7 @@ Given an array of strings `strs`, group the anagrams together. You can return th
 
 An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 
-```
+```txt
 Input: strs = ["eat","tea","tan","ate","nat","bat"]
 Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 ```
@@ -28,7 +28,7 @@ Iterate through the array of strings and create a unique key using an array of 2
 
 For example, given the following strings `[eat, tea, ate]`, the key for each string would be as follows:
 
-```js
+```txt
 eat -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
 tea -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
 ate -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]

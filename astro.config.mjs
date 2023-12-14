@@ -30,16 +30,16 @@ export default defineConfig({
         {
           label: "Indexes",
           autogenerate: { directory: "indexes" },
-        }
+        },
       ],
       customCss: ["./src/styles/custom.css"],
       editLink: {
         baseUrl: "https://github.com/kevinzunigacuellar/algowizardry/edit/main",
       },
-      lastUpdated: true,
       components: {
         MarkdownContent: "./src/components/MarkdownContentWrapper.astro",
       },
+      lastUpdated: true,
     }),
   ],
   site: "https://algowizardry.kevinzunigacuellar.com",

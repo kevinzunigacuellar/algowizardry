@@ -7,16 +7,16 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier -w .",
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.13.0",
-    "astro": "^3.5.5",
+    "@astrojs/starlight": "^0.15.0",
+    "astro": "^4.0.4",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2"
   }
 }
