@@ -1,8 +1,9 @@
 ---
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+import { Icon } from '@astrojs/starlight/components';
 
-const { difficulty, dataStructures } = Astro.props.entry.data;
+const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
@@ -27,13 +28,14 @@ const { difficulty, dataStructures } = Astro.props.entry.data;
             </a>
           </li>
         ))}
+        <li><a class="lt-link" href={problemUrl}>Leetcode URL <Icon name="external" class="icon" size="1.125rem" /></a></li>
       </ul>
     )
   }
   <slot />
 </Default>
 <style>
-  .page-metadata {
+  ul {
     --light-green: #bbf7d0;
     --dark-green: #15803d;
     --light-yellow: #fef08a;
@@ -47,7 +49,7 @@ const { difficulty, dataStructures } = Astro.props.entry.data;
     padding: 0;
   }
 
-  .page-metadata a {
+  ul a {
     display: block;
     border-radius: 0.25rem;
     text-transform: capitalize;
@@ -56,26 +58,32 @@ const { difficulty, dataStructures } = Astro.props.entry.data;
     text-decoration: none;
   }
 
-  .page-metadata .tag {
+  ul .tag {
     border-color: var(--sl-color-gray-5);
     color: var(--sl-color-gray-3);
   }
 
-  .page-metadata .tag:hover {
+  ul .tag:hover {
     border-color: var(--sl-color-gray-3);
     color: var(--sl-color-gray-2);
   }
 
-  .page-metadata .difficulty {
+  ul .difficulty {
     font-weight: 500;
     background-color: var(--difficulty-bg-color);
     color: var(--difficulty-text-color);
   }
 
-  .page-metadata .difficulty:hover {
+  ul .difficulty:hover {
     color: var(--difficulty-text-color);
     border-color: var(--difficulty-text-color);
     border-color: var(--difficulty-border-color);
+  }
+
+  ul .lt-link {
+    display: flex;
+    gap: 0.25rem;
+    border-color: var(--sl-color-primary-500);
   }
 
   .easy {
