@@ -1,15 +1,15 @@
 ---
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
-import { Icon } from '@astrojs/starlight/components';
+import { Icon } from "@astrojs/starlight/components";
 
 const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
-  {
-    difficulty && dataStructures && (
-      <ul class="page-metadata">
+  <ul class="page-metadata">
+    {
+      difficulty && (
         <li>
           <a
             href={`/indexes/difficulty/#${difficulty}`}
@@ -18,20 +18,30 @@ const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
             {difficulty}
           </a>
         </li>
-        {dataStructures?.map((item) => (
-          <li>
-            <a
-              href={`/indexes/data-structure/#${item.replace(/\s/g, "-")}`}
-              class="tag"
-            >
-              {item}
-            </a>
-          </li>
-        ))}
-        <li><a class="lt-link" href={problemUrl}>Leetcode URL <Icon name="external" class="icon" size="1.125rem" /></a></li>
-      </ul>
-    )
-  }
+      )
+    }
+    {
+      dataStructures?.map((item) => (
+        <li>
+          <a
+            href={`/indexes/data-structure/#${item.replace(/\s/g, "-")}`}
+            class="tag"
+          >
+            {item}
+          </a>
+        </li>
+      ))
+    }
+    {
+      problemUrl && (
+        <li>
+          <a class="lt-link" href={problemUrl}>
+            Problem URL <Icon name="external" class="icon" size="1.125rem" />
+          </a>
+        </li>
+      )
+    }
+  </ul>
   <slot />
 </Default>
 <style>
@@ -72,12 +82,12 @@ const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
     font-weight: 500;
     background-color: var(--difficulty-bg-color);
     color: var(--difficulty-text-color);
+    border-color: var(--difficulty-border-color);
   }
 
   ul .difficulty:hover {
-    color: var(--difficulty-text-color);
     border-color: var(--difficulty-text-color);
-    border-color: var(--difficulty-border-color);
+    color: var(--difficulty-text-color);
   }
 
   ul .lt-link {
