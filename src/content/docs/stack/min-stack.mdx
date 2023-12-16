@@ -106,7 +106,8 @@ class MinStack {
 ## Complexity Analysis
 
 - **Time Complexity**
-  - `push` - `O(1)` - We are pushing the value to the stack in constant time.
-  - `pop` - `O(1)` - We are popping the value from the stack in constant time.
-  - `top` - `O(1)` - We are returning the top element from the stack in constant time.
-  - `getMin` - `O(1)` - We are returning the minimum element from the stack in constant time.
+  - `push` - `O(1)` - The value is pushed to the stack in constant time.
+  - `pop` - `O(1)` - The top element is popped from the stack in constant time.
+  - `top` - `O(1)` - The top element is returned from the stack in constant time.
+  - `getMin` - `O(1)` - Because the minimum element is stored in the stack, it can be returned in constant time.
+- **Space Complexity** - `O(n)` - In the worst case, the stack will contain `n` elements.
