@@ -1,0 +1,112 @@
+---
+title: Min Stack
+description: Solution for Min Stack Leetcode Problem
+difficulty: medium
+problemUrl: https://leetcode.com/problems/min-stack/
+dataStructures:
+  - "stack"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+Implement the `MinStack` class:
+
+- `MinStack()` initializes the stack object.
+- `push(val)` pushes the element `val` onto the stack.
+- `pop()` removes the element on the top of the stack.
+- `top()` gets the top element of the stack.
+- `getMin()` retrieves the minimum element in the stack.
+
+You must implement `push`, `pop`, `top`, and `getMin` **in constant time**.
+
+## Solution
+
+To get the minimum element in constant time, we can use the stack to not only store the elements, but also the minimum element at the time of insertion. This way, we can always get the minimum element in constant time.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="js">
+
+```js
+class MinStack {
+  constructor() {
+    this.stack = [];
+  }
+
+  push(val) {
+    const min = this.stack.length === 0 ? val : Math.min(val, this.getMin());
+    this.stack.push({ val, min });
+  }
+
+  pop() {
+    this.stack.pop();
+  }
+
+  top() {
+    return this.stack.at(-1).val;
+  }
+
+  getMin() {
+    return this.stack.at(-1).min;
+  }
+}
+```
+
+  </TabItem>
+  <TabItem label="ts">
+
+```ts
+interface StackNode {
+  val: number;
+  min: number;
+}
+
+class MinStack {
+  private stack: StackNode[];
+
+  constructor() {
+    this.stack = [];
+  }
+
+  push(val: number): void {
+    const min = this.stack.length === 0 ? val : Math.min(val, this.getMin());
+    this.stack.push({ val, min });
+  }
+
+  pop(): void {
+    this.stack.pop();
+  }
+
+  top(): number {
+    return this.stack.at(-1).val;
+  }
+
+  getMin(): number {
+    return this.stack.at(-1).min;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. Create a class `MinStack` that initializes a stack.
+2. Implement `push` method that takes a value and pushes it to the stack.
+   - If the stack is empty, set the minimum value to the value being pushed.
+   - Otherwise, set the minimum value to the minimum of the value being pushed and the current minimum value.
+3. Implement `pop` method that pops the top element from the stack.
+4. Implement `top` method that returns the top element from the stack.
+5. Implement `getMin` method that returns the minimum element from the stack.
+
+## Complexity Analysis
+
+- **Time Complexity**
+  - `push` - `O(1)` - We are pushing the value to the stack in constant time.
+  - `pop` - `O(1)` - We are popping the value from the stack in constant time.
+  - `top` - `O(1)` - We are returning the top element from the stack in constant time.
+  - `getMin` - `O(1)` - We are returning the minimum element from the stack in constant time.
