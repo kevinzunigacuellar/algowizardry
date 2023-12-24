@@ -20,6 +20,10 @@ export default defineConfig({
           autogenerate: { directory: "two-pointers" },
         },
         {
+          label: "Tree",
+          autogenerate: { directory: "tree" },
+        },
+        {
           label: "Hash Table",
           autogenerate: { directory: "hash-table" },
         },
