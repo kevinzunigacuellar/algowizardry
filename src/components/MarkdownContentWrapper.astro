@@ -3,7 +3,7 @@ import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 import { Icon } from "@astrojs/starlight/components";
 
-const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
+const { difficulty, tags, problemUrl } = Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
@@ -21,7 +21,7 @@ const { difficulty, dataStructures, problemUrl } = Astro.props.entry.data;
       )
     }
     {
-      dataStructures?.map((item) => (
+      tags?.map((item) => (
         <li>
           <a
             href={`/indexes/data-structure/#${item.replace(/\s/g, "-")}`}

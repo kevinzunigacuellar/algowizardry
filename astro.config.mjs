@@ -16,12 +16,8 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Two Pointers",
-          autogenerate: { directory: "two-pointers" },
-        },
-        {
-          label: "Tree",
-          autogenerate: { directory: "tree" },
+          label: "Backtracking",
+          autogenerate: { directory: "backtracking" },
         },
         {
           label: "Hash Table",
@@ -32,8 +28,12 @@ export default defineConfig({
           autogenerate: { directory: "stack" },
         },
         {
-          label: "Indexes",
-          autogenerate: { directory: "indexes" },
+          label: "Tree",
+          autogenerate: { directory: "tree" },
+        },
+        {
+          label: "Two Pointers",
+          autogenerate: { directory: "two-pointers" },
         },
       ],
       customCss: ["./src/styles/custom.css"],
