@@ -10,28 +10,10 @@ const { difficulty, tags, problemUrl } = Astro.props.entry.data;
   <ul class="page-metadata">
     {
       difficulty && (
-        <li>
-          <a
-            href={`/indexes/difficulty/#${difficulty}`}
-            class:list={["difficulty", difficulty]}
-          >
-            {difficulty}
-          </a>
-        </li>
+        <li class:list={["difficulty", difficulty]}>{difficulty}</li>
       )
     }
-    {
-      tags?.map((item) => (
-        <li>
-          <a
-            href={`/indexes/data-structure/#${item.replace(/\s/g, "-")}`}
-            class="tag"
-          >
-            {item}
-          </a>
-        </li>
-      ))
-    }
+    {tags?.map((item) => <li class="tag">{item}</li>)}
     {
       problemUrl && (
         <li>
@@ -59,7 +41,7 @@ const { difficulty, tags, problemUrl } = Astro.props.entry.data;
     padding: 0;
   }
 
-  ul a {
+  ul li {
     display: block;
     border-radius: 0.25rem;
     text-transform: capitalize;
@@ -73,21 +55,11 @@ const { difficulty, tags, problemUrl } = Astro.props.entry.data;
     color: var(--sl-color-gray-3);
   }
 
-  ul .tag:hover {
-    border-color: var(--sl-color-gray-3);
-    color: var(--sl-color-gray-2);
-  }
-
   ul .difficulty {
     font-weight: 500;
     background-color: var(--difficulty-bg-color);
     color: var(--difficulty-text-color);
     border-color: var(--difficulty-border-color);
-  }
-
-  ul .difficulty:hover {
-    border-color: var(--difficulty-text-color);
-    color: var(--difficulty-text-color);
   }
 
   ul .lt-link {
