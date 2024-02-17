@@ -18,84 +18,88 @@ Use backtracking to generate all possible combinations of parentheses. Start wit
 ## Implementation
 
 <Tabs>
-  <TabItem label="go">
-
-```go
-func generateParenthesis(n int) []string {
-	var result []string
-	backtrack("", 0, 0, n, &result)
-	return result
-}
-
-func backtrack(current string, open, close, max int, result *[]string) {
-	if len(current) == max*2 {
-		*result = append(*result, current)
-		return
-	}
-
-	if open < max {
-		backtrack(current+"(", open+1, close, max, result)
-	}
-	if close < open {
-		backtrack(current+")", open, close+1, max, result)
-	}
-}
-```
-
-  </TabItem>
-  <TabItem label="js">
+  <TabItem label="JavaScript">
 
 ```js
-function generateParenthesis(n) {
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function (n) {
+  let max = n * 2;
   const result = [];
-  backtrack("", 0, 0, n, result);
+  var backtrack = function (current, open, close) {
+    if (current.length === max) {
+      result.push(current);
+      return;
+    }
+
+    if (open < n) {
+      backtrack(current + "(", open + 1, close);
+    }
+
+    if (close < open) {
+      backtrack(current + ")", open, close + 1);
+    }
+  };
+  backtrack("", 0, 0, result);
   return result;
-}
-
-function backtrack(current, open, close, max, result) {
-  if (current.length === max * 2) {
-    result.push(current);
-    return;
-  }
-
-  if (open < max) {
-    backtrack(current + "(", open + 1, close, max, result);
-  }
-  if (close < open) {
-    backtrack(current + ")", open, close + 1, max, result);
-  }
-}
+};
 ```
 
   </TabItem>
 
-  <TabItem label="ts">
+  <TabItem label="TypeScript">
 
 ```ts
 function generateParenthesis(n: number): string[] {
+  let max = n * 2;
   const result: string[] = [];
-  backtrack("", 0, 0, n, result);
+  function backtrack(current: string, open: number, close: number) {
+    if (current.length === max) {
+      result.push(current);
+      return;
+    }
+
+    if (open < n) {
+      backtrack(current + "(", open + 1, close);
+    }
+
+    if (close < open) {
+      backtrack(current + ")", open, close + 1);
+    }
+  }
+  backtrack("", 0, 0);
   return result;
 }
+```
 
-function backtrack(
-  current: string,
-  open: number,
-  close: number,
-  max: number,
-  result: string[],
-): void {
-  if (current.length === max * 2) {
-    result.push(current);
-    return;
-  }
+  </TabItem>
+  <TabItem label="Go">
 
-  if (open < max) {
-    backtrack(current + "(", open + 1, close, max, result);
-  }
-  if (close < open) {
-    backtrack(current + ")", open, close + 1, max, result);
-  }
+```go
+func generateParenthesis(n int) []string {
+	max := n * 2
+	result := make([]string, 0)
+
+	var backtrack func(string, int, int)
+	backtrack = func(current string, open int, close int) {
+		if len(current) == max {
+			result = append(result, current)
+			return
+		}
+
+		if open < n {
+			backtrack(current+"(", open+1, close)
+		}
+
+		if close < open {
+			backtrack(current+")", open, close+1)
+		}
+	}
+
+	backtrack("", 0, 0)
+	return result
 }
 ```
 
@@ -104,6 +108,16 @@ function backtrack(
 
 ## Pseudocode
 
-1. If the length of the current string is equal to `n * 2`, add the current string to the result.
-2. If the number of open parentheses is less than `n`, add a `(` to the current string and call backtrack with the updated string, the number of open parentheses incremented by 1, the number of close parentheses, and the result.
-3. If the number of close parentheses is less than the number of open parentheses, add a `)` to the current string and call backtrack with the updated string, the number of open parentheses, the number of close parentheses incremented by 1, and the result.
+### Main function
+
+1. Create a variable `max` and set it to `n * 2`
+2. Create an empty array `result`
+3. Create a function `backtrack` that takes `current`, `open`, `close` as arguments
+4. Call the `backtrack` function with an empty string `""`, `0`, and `0`
+
+### Backtracking function
+
+1. Check if the length of the current string is equal to `max`. If it is, add the current string to the result and return
+2. If the number of open parentheses is less than `n`, call the backtrack function with the current string concatenated with an open parentheses `(`, `open + 1`, and `close`
+
+3. If the number of close parentheses is less than the number of open parentheses, call the backtrack function with the current string concatenated with a close parentheses `)`, `open`, and `close + 1`
