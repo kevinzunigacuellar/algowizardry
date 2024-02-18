@@ -28,46 +28,52 @@ Use a key-value store to record the index of each element in `nums` as we iterat
 ## Implementation
 
 <Tabs>
-  <TabItem label="go">
+  <TabItem label="JavaScript">
 
-```go
-func twoSum(nums []int, target int) []int {
-  	m := make(map[int]int)
-		for i, num := range nums {
-			  val, ok := m[num]
-			  if ok {
-				    return []int{val, i}
-			  }
-			  m[target - num] = i
-    }
-    return []int{}
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  const m = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (m.has(nums[i])) return [m.get(nums[i]), i];
+    m.set(target - nums[i], i);
+  }
+};
+```
+
+  </TabItem>
+  <TabItem label="TypeScript">
+
+```ts
+function twoSum(nums: number[], target: number): number[] {
+  const m = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (m.has(nums[i])) return [m.get(nums[i]), i];
+    m.set(target - nums[i], i);
+  }
 }
 ```
 
   </TabItem>
-  <TabItem label="js">
+  <TabItem label="Go">
 
-```js
-const twoSum = function (nums, target) {
-  const memory = new Map();
-  for (const [index, num] of nums.entries()) {
-    if (memory.has(num)) return [memory.get(num), index];
-    memory.set(target - num, index);
-  }
-};
+```go
+func twoSum(nums []int, target int) []int {
+	m := make(map[int]int)
+	for i, num := range nums {
+		if idx, ok := m[num]; ok {
+			return []int{idx, i}
+		}
+		m[target-num] = i
+	}
+	return nil
+}
 ```
 
-  </TabItem>
-  <TabItem label="ts">
-```ts
-function twoSum(nums: number[], target: number): number[] {
-	const memory = new Map<number, number>()
-  for (const [index, num] of nums.entries()){
-    if (memory.has(num)) return [memory.get(num), index]
-    memory.set(target - num, index)
-  }
-};
-```
   </TabItem>
 </Tabs>
 
@@ -76,3 +82,8 @@ function twoSum(nums: number[], target: number): number[] {
 1. Initialize a key-value store to record the index of each element in `nums`.
 2. Iterate through `nums` and for each element, check if the key-value store contains the difference between the current element and the target.
 3. If it does, return the current index and the index of the difference.
+
+## Complexity Analysis
+
+- The time complexity of this algorithm is O(n) because we iterate through the array once.
+- The space complexity of this algorithm is O(n) because we store the index of each element in a key-value store.
