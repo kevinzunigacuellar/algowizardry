@@ -20,97 +20,67 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
 ## Solution
 
-To solve this problem, you need to first understand what an anagram is. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. So, for example, the word `eat` is an anagram of `tea` and `ate`.
-
-First, create a map to store the anagrams. The key for the map will be a unique key for each anagram. The value for the map will be an array of strings that are anagrams of each other.
-
-Iterate through the array of strings and create a unique key using an array of 26 characters. The key is created by iterating through each character in the string and incrementing the value at the index of the character in the array.
-
-For example, given the following strings `[eat, tea, ate]`, the key for each string would be as follows:
-
-```txt
-eat -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
-tea -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
-ate -> [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ...]
-```
-
-As you can see, the key for each string is the same. This is because each string has the same characters.
-
-Once you have the key, you can add the string to the map.
-
-If the key already exists in the map, then you can add the string to the array of strings for that key. If the key does not exist in the map, then you can create a new array with the string and add it to the map.
-
-Once you have added all the strings to the map, you can return the values of the map as an array.
+To solve this problem, we can use a hash table to store the anagrams. We can create a unique key for each string using an a sorted string of the characters. We can then add the string to the hash table using the key. Finally, we can return the values of the hash table as an array.
 
 ## Implementation
 
 <Tabs>
-  <TabItem label="go">
-
-```go
-func groupAnagrams(strs []string) [][]string {
-    anagrams := make(map[[26]int][]string)
-
-	  for _, word := range strs {
-		    key := [26]int{}
-		    for _, ch := range word {
-			      key[ch-'a'] += 1
-		    }
-		    anagrams[key] = append(anagrams[key], word)
-	  }
-
-	  result := make([][]string, 0, len(anagrams))
-	  for _, group := range anagrams {
-		    result = append(result, group)
-	  }
-
-	return result
-}
-```
-
-  </TabItem>
-  <TabItem label="js">
+  <TabItem label="JavaScript">
 
 ```js
-function groupAnagrams(strs) {
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
   const anagrams = new Map();
-  const a_ = "a".charCodeAt(0);
-
-  for (const word of strs) {
-    const arr = new Array(26).fill(0);
-    for (const letter of word) {
-      const index = letter.charCodeAt(0) - a_;
-      arr[index] += 1;
-    }
-    const key = arr.join("-");
-    const group = anagrams.get(key) ?? [];
-    group.push(word);
-    anagrams.set(key, group);
+  for (const s of strs) {
+    const sortedWord = s.split("").sort().join("");
+    const wordAnagrams = anagrams.get(sortedWord) ?? [];
+    wordAnagrams.push(s);
+    anagrams.set(sortedWord, wordAnagrams);
   }
   return Array.from(anagrams.values());
-}
+};
 ```
 
   </TabItem>
-  <TabItem label="ts">
+  <TabItem label="TypeScript">
 
 ```ts
 function groupAnagrams(strs: string[]): string[][] {
   const anagrams = new Map<string, string[]>();
-  const a_ = "a".charCodeAt(0);
-
-  for (const word of strs) {
-    const arr = new Array(26).fill(0);
-    for (const letter of word) {
-      const index = letter.charCodeAt(0) - a_;
-      arr[index] += 1;
-    }
-    const key = arr.join("-");
-    const group = anagrams.get(key) ?? [];
-    group.push(word);
-    anagrams.set(key, group);
+  for (const s of strs) {
+    const sortedWord = s.split("").sort().join("");
+    const wordAnagrams = anagrams.get(sortedWord) ?? [];
+    wordAnagrams.push(s);
+    anagrams.set(sortedWord, wordAnagrams);
   }
   return Array.from(anagrams.values());
+}
+```
+
+  </TabItem>
+  <TabItem label="Go">
+
+```go
+import "sort"
+
+func groupAnagrams(strs []string) [][]string {
+	anagrams := make(map[string][]string)
+	for _, s := range strs {
+		bytes := []byte(s)
+		sort.Slice(bytes, func(i, j int) bool { return bytes[i] < bytes[j] })
+		hash := string(bytes)
+		anagrams[hash] = append(anagrams[hash], s)
+	}
+
+	values := make([][]string, 0)
+	for _, v := range anagrams {
+		values = append(values, v)
+	}
+
+	return values
 }
 ```
 
@@ -120,7 +90,13 @@ function groupAnagrams(strs: string[]): string[][] {
 ## Pseudocode
 
 1. Create a map to store the anagrams.
-2. Iterate through the array of strings.
-3. Create a unique key for each string using an array of 26 characters.
-4. Add the string to the map using the key.
+2. Loop through each string in the input array.
+3. Sort the string and use it as a key in the map.
+4. Add the string to the array of anagrams for the key.
 5. Return the values of the map as an array.
+
+## Complexity Analysis
+
+- The time complexity of this algorithm is O(n * m * log(m)), where n is the number of strings and m is the length of the longest string. This is because we are sorting each string.
+
+- The space complexity of this algorithm is O(n * m), where n is the number of strings and m is the length of the longest string. This is because we are storing the anagrams in a map.
