@@ -75,6 +75,21 @@ func twoSum(nums []int, target int) []int {
 ```
 
   </TabItem>
+
+  <TabItem label="Python">
+
+```py
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        m = {}
+        for i, num in enumerate(nums):
+            if m.get(num) is not None:
+                return [m.get(num), i]
+            m[target - num] = i
+
+```
+
+  </TabItem>
 </Tabs>
 
 ## Pseudocode
