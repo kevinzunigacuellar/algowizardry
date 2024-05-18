@@ -1,0 +1,64 @@
+---
+title: Diameter of Binary Tree
+description: Solution of Diameter of Binary Tree
+difficulty: easy
+problemUrl: https://leetcode.com/problems/diameter-of-binary-tree/
+tags:
+  - "tree"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Given the `root` of a binary tree, return the diameter of the binary tree.
+
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+The length of a path between two nodes is represented by the number of edges between them.
+
+## Solution
+
+Use a recursive function to calculate the height of the tree. The function will return the maximum depth of the left and right child nodes, and then return the maximum of the two plus one. While calculating the height, we can also calculate the diameter of the tree by adding the height of the left and right child nodes.
+
+## Implementation
+
+<Tabs>
+  <TabItem label="Python">
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.max_diameter = 0
+        self.height(root)
+        return self.max_diameter
+
+    def height(self, root):
+        if root is None:
+            return 0
+
+        left_height = self.height(root.left)
+        right_height = self.height(root.right)
+        self.max_diameter = max(self.max_diameter, left_height + right_height)
+        return max(left_height, right_height) + 1
+
+```
+
+  </TabItem>
+</Tabs>
+
+## Pseudocode
+
+1. If the root is `None`, return 0.
+2. Calculate the height of the left and right child nodes recursively.
+3. Update the diameter of the tree by adding the height of the left and right child nodes.
+4. Return the maximum of the height of the left and right child nodes plus one.
+
+## Complexity Analysis
+
+- **Time complexity**: O(n) - because we visit each node exactly once.
+- **Space complexity**: O(n) due to the recursive call stack.
