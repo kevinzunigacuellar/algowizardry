@@ -1,5 +1,5 @@
 {
-  "name": "interview-prep-solutions",
+  "name": "algowizardry",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,9 +11,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.19.0",
-    "astro": "^4.4.0",
-    "astro-og-canvas": "^0.4.2",
+    "@astrojs/starlight": "^0.23.0",
+    "astro": "^4.8.6",
+    "astro-og-canvas": "^0.5.0",
     "canvaskit-wasm": "^0.39.1",
     "sharp": "^0.32.6"
   },

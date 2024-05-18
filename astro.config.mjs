@@ -42,7 +42,7 @@ export default defineConfig({
       },
       components: {
         MarkdownContent: "./src/components/MarkdownContentWrapper.astro",
-        Head: './src/components/Head.astro',
+        Head: "./src/components/Head.astro",
       },
       lastUpdated: true,
     }),

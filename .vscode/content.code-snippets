@@ -1,18 +1,18 @@
 {
-	"Create an empty frontmatter for a new page": {
-		"scope": "mdx, md",
-		"prefix": "new_frontmatter",
-		"body": [
-			"---",
-			"title: $1",
-			"description: $2",
-			"difficulty: $3",
-			"problemUrl: https://leetcode.com/problems/$4/",
-			"tags:",
-			"	- $5",
-			"---",
-			"import { Tabs, TabItem } from \"@astrojs/starlight/components\";"
-		],
-		"description": "Create an empty frontmatter for a new page"
-	}
+  "Create an empty frontmatter for a new page": {
+    "scope": "mdx, md",
+    "prefix": "new_frontmatter",
+    "body": [
+      "---",
+      "title: $1",
+      "description: $2",
+      "difficulty: $3",
+      "problemUrl: https://leetcode.com/problems/$4/",
+      "tags:",
+      "	- $5",
+      "---",
+      "import { Tabs, TabItem } from \"@astrojs/starlight/components\";",
+    ],
+    "description": "Create an empty frontmatter for a new page",
+  },
 }
