@@ -83,6 +83,28 @@ func groupAnagrams(strs []string) [][]string {
 	return values
 }
 ```
+  </TabItem>
+  <TabItem label="C++">
+
+```cpp
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        std::unordered_map<string, vector<string>> anagram_group;
+        for (const string& str : strs) {
+            string sorted_key = str;
+            sort(sorted_key.begin(), sorted_key.end());
+            anagram_group[sorted_key].push_back(str);
+        }
+
+        vector<vector<string>> result;
+        for (auto& pair : anagram_group) {
+            result.push_back(pair.second);
+        }
+        return result;
+    }
+};
+```
 
   </TabItem>
 </Tabs>
