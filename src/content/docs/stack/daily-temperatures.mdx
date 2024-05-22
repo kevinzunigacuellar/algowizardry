@@ -90,6 +90,25 @@ function dailyTemperatures(temperatures: number[]): number[] {
 ```
 
   </TabItem>
+
+  <TabItem label="Python">
+
+```py
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        n = len(temperatures)
+        stack = []
+        ans = [0] * n
+        for i in range(n):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                top_index = stack.pop()
+                diff = i - top_index
+                ans[top_index] = diff
+            stack.append(i)
+        return ans
+```
+
+  </TabItem>
 </Tabs>
 
 ## Pseudocode
