@@ -9,7 +9,7 @@
       "difficulty: $3",
       "problemUrl: https://leetcode.com/problems/$4/",
       "tags:",
-      "	- $5",
+      "- $5",
       "---",
       "import { Tabs, TabItem } from \"@astrojs/starlight/components\";",
     ],
