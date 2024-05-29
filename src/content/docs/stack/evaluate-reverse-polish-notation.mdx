@@ -98,6 +98,56 @@ function evalRPN(tokens: string[]): number {
 ```
 
   </TabItem>
+  <TabItem label="C++">
+
+```cpp
+
+#include <stack>
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> my_stack;
+        for (string& token : tokens) {
+            if (token == "+" || token == "-" || token == "/" || token == "*") {
+                int second = my_stack.top();
+                my_stack.pop();
+                int first = my_stack.top();
+                my_stack.pop();
+                int result = 0;
+
+                // token[0] converts string to char
+                switch (token[0]) {
+                case '+':
+                    result = first + second;
+                    break;
+
+                case '-':
+                    result = first - second;
+                    break;
+
+                case '*':
+                    result = first * second;
+                    break;
+
+                case '/':
+                    result = first / second;
+                    break;
+
+                default:
+                    throw std::invalid_argument("Invalid operator");
+                }
+                my_stack.push(result);
+            } else {
+                my_stack.push(std::stoi(token));
+            }
+        }
+        return my_stack.top();
+    }
+};
+
+```
+
+  </TabItem>
 </Tabs>
 
 ## Pseudocode
