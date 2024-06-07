@@ -11,14 +11,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.23.0",
-    "astro": "^4.8.6",
+    "@astrojs/starlight": "^0.24.0",
+    "astro": "^4.10.0",
     "astro-og-canvas": "^0.5.0",
     "canvaskit-wasm": "^0.39.1",
-    "sharp": "^0.32.6"
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "prettier": "^3.3.1",
+    "prettier-plugin-astro": "^0.14.0"
   }
 }
