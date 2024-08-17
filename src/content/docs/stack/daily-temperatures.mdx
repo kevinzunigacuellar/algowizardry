@@ -25,31 +25,15 @@ Use a stack to keep track of the indices of the temperatures. If the current tem
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
-
-```go
-func dailyTemperatures(temperatures []int) []int {
-	stack := make([]int, 0, len(temperatures))
-	result := make([]int, len(temperatures))
-
-	for i, temp := range temperatures {
-		for len(stack) > 0 && temp > temperatures[stack[len(stack)-1]] {
-			prevIndex := stack[len(stack)-1]
-			stack = stack[:len(stack)-1]
-			result[prevIndex] = i - prevIndex
-		}
-		stack = append(stack, i)
-	}
-	return result
-}
-```
-
-  </TabItem>
+<Tabs syncKey="language">
   <TabItem label="JavaScript">
 
 ```js
-function dailyTemperatures(temperatures) {
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temperatures) {
   const stack = [];
   const result = new Array(temperatures.length).fill(0);
 
@@ -90,7 +74,26 @@ function dailyTemperatures(temperatures: number[]): number[] {
 ```
 
   </TabItem>
+  <TabItem label="Go">
 
+```go
+func dailyTemperatures(temperatures []int) []int {
+	stack := make([]int, 0, len(temperatures))
+	result := make([]int, len(temperatures))
+
+	for i, temp := range temperatures {
+		for len(stack) > 0 && temp > temperatures[stack[len(stack)-1]] {
+			prevIndex := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			result[prevIndex] = i - prevIndex
+		}
+		stack = append(stack, i)
+	}
+	return result
+}
+```
+
+  </TabItem>
   <TabItem label="Python">
 
 ```py

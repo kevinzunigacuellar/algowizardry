@@ -20,11 +20,11 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
 ## Solution
 
-To solve this problem, we can use a hash table to store the anagrams. We can create a unique key for each string using an a sorted string of the characters. We can then add the string to the hash table using the key. Finally, we can return the values of the hash table as an array.
+Use a hash table to store the anagrams. For each string, sort the characters and use the sorted string as a key in the hash table. Add the original string to the array of anagrams for that key. Finally, return the values of the hash table as an array.
 
 ## Implementation
 
-<Tabs>
+<Tabs syncKey="language">
   <TabItem label="JavaScript">
 
 ```js

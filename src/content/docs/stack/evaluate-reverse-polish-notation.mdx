@@ -38,7 +38,7 @@ Use a stack to store the numbers. When we encounter an operator, we pop the last
 
 ## Implementation
 
-<Tabs>
+<Tabs syncKey="language">
   <TabItem label="JavaScript">
 
 ```js
@@ -97,6 +97,44 @@ function evalRPN(tokens: string[]): number {
 }
 ```
 
+  </TabItem>
+  <TabItem label="Python">
+
+```py
+class Solution:
+    def add(self, a: int, b: int):
+        return a + b
+
+    def sub(self, a: int, b: int):
+        return a - b
+
+    def mul(self, a: int, b: int):
+        return a * b
+
+    def div(self, a: int, b: int):
+        return int(a / b)
+
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        operations = {
+            "+": self.add,
+            "-": self.sub,
+            "*": self.mul,
+            "/": self.div,
+        }
+
+        for token in tokens:
+            if token in operations:
+                op = operations[token]
+                right = stack.pop()
+                left = stack.pop()
+                result = op(left, right)
+                stack.append(result)
+            else:
+                stack.append(int(token))
+        return stack.pop()
+
+```
   </TabItem>
   <TabItem label="C++">
 
