@@ -3,11 +3,7 @@ title: Merge Sorted Array
 description: Solution of Merge Sorted Array
 difficulty: easy
 problemUrl: https://leetcode.com/problems/merge-sorted-array
-tags:
-  - "two pointers"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.
 
@@ -24,32 +20,8 @@ Use two pointers to iterate over the arrays from the end. Compare the last eleme
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
-
-```go
-func merge(nums1 []int, m int, nums2 []int, n int) {
-    // start from the end of the array
-    i := m + n - 1
-    m--
-    n--
-
-    for n >= 0 {
-        if m >= 0 && nums1[m] > nums2[n] {
-            nums1[i] = nums1[m]
-            m--
-        } else {
-            nums1[i] = nums2[n]
-            n--
-        }
-        i--
-    }
-}
-```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 function merge(nums1, m, nums2, n) {
   // start from the end of the array
@@ -69,10 +41,8 @@ function merge(nums1, m, nums2, n) {
   }
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 function merge(nums1: number[], m: number, nums2: number[], n: number): void {
   // start from the end of the array
@@ -92,9 +62,29 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
   }
 }
 ```
+{% /tabitem %}
+{% tabitem label="Go" %}
+```go
+func merge(nums1 []int, m int, nums2 []int, n int) {
+    // start from the end of the array
+    i := m + n - 1
+    m--
+    n--
 
-  </TabItem>
-</Tabs>
+    for n >= 0 {
+        if m >= 0 && nums1[m] > nums2[n] {
+            nums1[i] = nums1[m]
+            m--
+        } else {
+            nums1[i] = nums2[n]
+            n--
+        }
+        i--
+    }
+}
+```
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -105,5 +95,5 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
 
 ## Complexity Analysis
 
-- **Time complexity**: `O(n)`. We are iterating over all the elements of the array.
-- **Space complexity**: `O(1)`. We are not using any extra space.
+- The time complexity is O(m + n) because we iterate over both arrays once.
+- The space complexity is O(1) because we do not use any extra space.

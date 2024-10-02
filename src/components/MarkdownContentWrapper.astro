@@ -3,7 +3,7 @@ import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 import { Icon } from "@astrojs/starlight/components";
 
-const { difficulty, tags, problemUrl } = Astro.props.entry.data;
+const { difficulty, problemUrl } = Astro.props.entry.data;
 ---
 
 <Default {...Astro.props}>
@@ -13,7 +13,6 @@ const { difficulty, tags, problemUrl } = Astro.props.entry.data;
         <li class:list={["difficulty", difficulty]}>{difficulty}</li>
       )
     }
-    {tags?.map((item) => <li class="tag">{item}</li>)}
     {
       problemUrl && (
         <li>

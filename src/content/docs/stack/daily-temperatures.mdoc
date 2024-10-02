@@ -3,11 +3,7 @@ title: Daily temperature
 description: Solution to the Daily temperature problem on leetcode
 difficulty: medium
 problemUrl: https://leetcode.com/problems/daily-temperatures/
-tags:
-  - "stack"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given an array of integers `temperatures` represents the daily temperatures, return an array `answer` such that `answer[i]` is the number of days you have to wait after the `ith` day to get a warmer temperature. If there is no future day for which this is possible, keep `answer[i] == 0` instead.
 
@@ -25,9 +21,8 @@ Use a stack to keep track of the indices of the temperatures. If the current tem
 
 ## Implementation
 
-<Tabs syncKey="language">
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 /**
  * @param {number[]} temperatures
@@ -50,10 +45,8 @@ var dailyTemperatures = function(temperatures) {
   return result;
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 function dailyTemperatures(temperatures: number[]): number[] {
   const stack: number[] = [];
@@ -72,10 +65,8 @@ function dailyTemperatures(temperatures: number[]): number[] {
   return result;
 }
 ```
-
-  </TabItem>
-  <TabItem label="Go">
-
+{% /tabitem %}
+{% tabitem label="Go" %}
 ```go
 func dailyTemperatures(temperatures []int) []int {
 	stack := make([]int, 0, len(temperatures))
@@ -92,10 +83,8 @@ func dailyTemperatures(temperatures []int) []int {
 	return result
 }
 ```
-
-  </TabItem>
-  <TabItem label="Python">
-
+{% /tabitem %}
+{% tabitem label="Python" %}
 ```py
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
@@ -110,11 +99,8 @@ class Solution:
             stack.append(i)
         return ans
 ```
-
-  </TabItem>
-
-  <TabItem label="C++">
-
+{% /tabitem %}
+{% tabitem label="C++" %}
 ```cpp
 class Solution {
 public:
@@ -135,9 +121,8 @@ public:
     }
 };
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -150,5 +135,5 @@ public:
 
 ## Complexity Analysis
 
-- **Time complexity** : `O(n)`. We traverse the array once.
-- **Space complexity** : `O(n)`. The stack can contain up to `n` elements.
+- The time complexity is `O(n)` where `n` is the number of temperatures.
+- The space complexity is `O(n)` where `n` is the number of temperatures.

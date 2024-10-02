@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,23 +18,33 @@ export default defineConfig({
       sidebar: [
         {
           label: "Backtracking",
-          autogenerate: { directory: "backtracking" },
+          autogenerate: {
+            directory: "backtracking",
+          },
         },
         {
           label: "Hash Table",
-          autogenerate: { directory: "hash-table" },
+          autogenerate: {
+            directory: "hash-table",
+          },
         },
         {
           label: "Stack",
-          autogenerate: { directory: "stack" },
+          autogenerate: {
+            directory: "stack",
+          },
         },
         {
           label: "Tree",
-          autogenerate: { directory: "tree" },
+          autogenerate: {
+            directory: "tree",
+          },
         },
         {
           label: "Two Pointers",
-          autogenerate: { directory: "two-pointers" },
+          autogenerate: {
+            directory: "two-pointers",
+          },
         },
       ],
       customCss: ["./src/styles/custom.css"],
@@ -44,8 +55,8 @@ export default defineConfig({
         MarkdownContent: "./src/components/MarkdownContentWrapper.astro",
         Head: "./src/components/Head.astro",
       },
-      lastUpdated: true,
     }),
+    markdoc(),
   ],
   site: "https://algowizardry.kevinzunigacuellar.com",
 });

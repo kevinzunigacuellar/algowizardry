@@ -3,11 +3,7 @@ title: Group anagrams
 description: Solution to group anagrams
 difficulty: medium
 problemUrl: https://leetcode.com/problems/group-anagrams/
-tags:
-  - "hash table"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.
 
@@ -24,9 +20,8 @@ Use a hash table to store the anagrams. For each string, sort the characters and
 
 ## Implementation
 
-<Tabs syncKey="language">
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 /**
  * @param {string[]} strs
@@ -43,10 +38,8 @@ var groupAnagrams = function (strs) {
   return Array.from(anagrams.values());
 };
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 function groupAnagrams(strs: string[]): string[][] {
   const anagrams = new Map<string, string[]>();
@@ -59,36 +52,32 @@ function groupAnagrams(strs: string[]): string[][] {
   return Array.from(anagrams.values());
 }
 ```
-
-  </TabItem>
-  <TabItem label="Go">
-
+{% /tabitem %}
+{% tabitem label="Go" %}
 ```go
 import "sort"
 
 func groupAnagrams(strs []string) [][]string {
-	anagrams := make(map[string][]string)
-	for _, s := range strs {
-		bytes := []byte(s)
-		sort.Slice(bytes, func(i, j int) bool { return bytes[i] < bytes[j] })
-		hash := string(bytes)
-		anagrams[hash] = append(anagrams[hash], s)
-	}
+  anagrams := make(map[string][]string)
+  for _, s := range strs {
+    bytes := []byte(s)
+    sort.Slice(bytes, func(i, j int) bool { return bytes[i] < bytes[j] })
+    hash := string(bytes)
+    anagrams[hash] = append(anagrams[hash], s)
+  }
 
-	values := make([][]string, 0)
-	for _, v := range anagrams {
-		values = append(values, v)
-	}
+  values := make([][]string, 0)
+  for _, v := range anagrams {
+    values = append(values, v)
+  }
 
-	return values
+  return values
 }
 ```
-  </TabItem>
-  <TabItem label="Python">
-
+{% /tabitem %}
+{% tabitem label="Python" %}
 ```py
 from collections import defaultdict
-
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -101,9 +90,8 @@ class Solution:
         return list(anagram_group.values())
 
 ```
-  </TabItem>
-  <TabItem label="C++">
-
+{% /tabitem %}
+{% tabitem label="C++" %}
 ```cpp
 class Solution {
 public:
@@ -123,9 +111,8 @@ public:
     }
 };
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -137,6 +124,5 @@ public:
 
 ## Complexity Analysis
 
-- The time complexity of this algorithm is O(n _ m _ log(m)), where n is the number of strings and m is the length of the longest string. This is because we are sorting each string.
-
-- The space complexity of this algorithm is O(n \* m), where n is the number of strings and m is the length of the longest string. This is because we are storing the anagrams in a map.
+- The time complexity of this algorithm is `O(n * m * log m)`, where n is the number of strings and m is the length of the longest string. The sorting operation takes `O(m * log m)` time.
+- The space complexity of this algorithm is `O(n * m)`, where n is the number of strings and m is the length of the longest string. We are storing the sorted strings in the map.

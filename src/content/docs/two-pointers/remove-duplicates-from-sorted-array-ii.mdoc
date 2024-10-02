@@ -3,12 +3,7 @@ title: Remove Duplicates from Sorted Array II
 description: Solution of Remove Duplicates from Sorted Array II
 difficulty: medium
 problemUrl: https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii
-tags:
-  - "hash table"
-  - "two pointers"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given an integer array `nums` sorted in **non-decreasing order**, remove some duplicates in-place such that each unique element appears **at most twice**. The **relative order** of the elements should be kept the **same**.
 
@@ -28,28 +23,8 @@ Use a map to store the number of occurrences of each number. Loop through the ar
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
-
-```go
-func removeDuplicates(nums []int) int {
-    counter := make(map[int]int)
-    k := 0
-
-    for _, num := range nums {
-        if counter[num] < 2 {
-            counter[num]++
-            nums[k] = num
-            k++
-        }
-    }
-    return k
-}
-```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 function removeDuplicates(nums) {
   const memory = new Map();
@@ -65,10 +40,8 @@ function removeDuplicates(nums) {
   return k;
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 function removeDuplicates(nums: number[]): number {
   const memory = new Map<number, number>();
@@ -84,9 +57,25 @@ function removeDuplicates(nums: number[]): number {
   return k;
 }
 ```
+{% /tabitem %}
+{% tabitem label="Go" %}
+```go
+func removeDuplicates(nums []int) int {
+    counter := make(map[int]int)
+    k := 0
 
-  </TabItem>
-</Tabs>
+    for _, num := range nums {
+        if counter[num] < 2 {
+            counter[num]++
+            nums[k] = num
+            k++
+        }
+    }
+    return k
+}
+```
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -99,5 +88,5 @@ function removeDuplicates(nums: number[]): number {
 
 ## Complexity Analysis
 
-- **Time Complexity:** `O(n)`. You are looping through the array once.
-- **Space Complexity:** `O(n)`. You are creating a map to store the number of occurrences of each number.
+- The time complexity is O(n) because we loop through the array once.
+- The space complexity is O(n) because we use a map to store the number of occurrences of each number.

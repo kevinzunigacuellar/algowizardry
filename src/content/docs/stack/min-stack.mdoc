@@ -3,11 +3,7 @@ title: Min Stack
 description: Solution for Min Stack Leetcode Problem
 difficulty: medium
 problemUrl: https://leetcode.com/problems/min-stack/
-tags:
-  - "stack"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
@@ -27,8 +23,8 @@ To get the minimum element in constant time, we can use the stack to not only st
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="JavaScript">
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 
 ```js
 class MinStack {
@@ -54,10 +50,8 @@ class MinStack {
   }
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 interface StackNode {
   val: number;
@@ -89,9 +83,8 @@ class MinStack {
   }
 }
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -105,9 +98,5 @@ class MinStack {
 
 ## Complexity Analysis
 
-- **Time Complexity**
-  - `push` - `O(1)` - The value is pushed to the stack in constant time.
-  - `pop` - `O(1)` - The top element is popped from the stack in constant time.
-  - `top` - `O(1)` - The top element is returned from the stack in constant time.
-  - `getMin` - `O(1)` - Because the minimum element is stored in the stack, it can be returned in constant time.
-- **Space Complexity** - `O(n)` - In the worst case, the stack will contain `n` elements.
+- The time complexity for all the operations is `O(1)` because we are using the stack to store the minimum element.
+- The space complexity is `O(n)` where `n` is the number of elements in the stack.

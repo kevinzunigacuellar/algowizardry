@@ -3,12 +3,7 @@ title: Valid Parentheses
 description: Solution for Valid Parentheses
 difficulty: easy
 problemUrl: https://leetcode.com/problems/valid-parentheses/
-tags:
-  - "stack"
-  - "hash table"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
@@ -35,9 +30,56 @@ Use a stack to store the open brackets. When you encounter a close bracket, pop 
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
+```js
+function isValid(s) {
+  const bracketPairs = new Map([
+    ["}", "{"],
+    ["]", "["],
+    [")", "("],
+  ]);
+  const stack = [];
 
+  for (const item of s) {
+    if (!bracketPairs.has(item)) {
+      stack.push(item);
+    } else {
+      const lastItemInStack = stack.pop();
+      if (lastItemInStack !== bracketPairs.get(item)) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+```
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
+```ts
+function isValid(s: string): boolean {
+  const bracketPairs = new Map([
+    ["}", "{"],
+    ["]", "["],
+    [")", "("],
+  ]);
+  const stack = [];
+
+  for (const item of s) {
+    if (!bracketPairs.has(item)) {
+      stack.push(item);
+    } else {
+      const lastItemInStack = stack.pop();
+      if (lastItemInStack !== bracketPairs.get(item)) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+```
+{% /tabitem %}
+{% tabitem label="Go" %}
 ```go
 func isValid(s string) bool {
   bracketPairs := map[rune]rune{
@@ -61,61 +103,8 @@ func isValid(s string) bool {
   return len(stack) == 0
 }
 ```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-
-```js
-function isValid(s) {
-  const bracketPairs = new Map([
-    ["}", "{"],
-    ["]", "["],
-    [")", "("],
-  ]);
-  const stack = [];
-
-  for (const item of s) {
-    if (!bracketPairs.has(item)) {
-      stack.push(item);
-    } else {
-      const lastItemInStack = stack.pop();
-      if (lastItemInStack !== bracketPairs.get(item)) {
-        return false;
-      }
-    }
-  }
-  return stack.length === 0;
-}
-```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
-```ts
-function isValid(s: string): boolean {
-  const bracketPairs = new Map([
-    ["}", "{"],
-    ["]", "["],
-    [")", "("],
-  ]);
-  const stack = [];
-
-  for (const item of s) {
-    if (!bracketPairs.has(item)) {
-      stack.push(item);
-    } else {
-      const lastItemInStack = stack.pop();
-      if (lastItemInStack !== bracketPairs.get(item)) {
-        return false;
-      }
-    }
-  }
-  return stack.length === 0;
-}
-```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -128,6 +117,5 @@ function isValid(s: string): boolean {
 
 ## Complexity Analysis
 
-| Time Complexity | Space Complexity |
-| --------------- | ---------------- |
-| O(n)            | O(n)             |
+- The time complexity is O(n) because we iterate through the string once.
+- The space complexity is O(n) because we use a stack to store the open brackets.

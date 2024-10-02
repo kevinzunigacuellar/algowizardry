@@ -3,13 +3,9 @@ title: Container With Most Water
 description: Solution of Container With Most Water
 difficulty: medium
 problemUrl: https://leetcode.com/problems/container-with-most-water
-tags:
-  - "two pointers"
 ---
 
-import { Tabs, TabItem } from "@astrojs/starlight/components";
-
-Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
+Given n non-negative integers `a1`, `a2`, ..., `an`, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
 
 ![water tank image](../../../assets/container-water.jpeg)
 
@@ -26,31 +22,8 @@ Use two pointers, one at the start and one at the end. Calculate the area betwee
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
-
-```go
-func maxArea(height []int) int {
-    var left, maxVol int
-    right := len(height) - 1
-
-    for right > left {
-        w := right - left
-        h := min(height[left], height[right])
-        maxVol = max(w*h, maxVol)
-        if height[left] > height[right] {
-            right --
-        } else {
-            left ++
-        }
-    }
-    return maxVol
-}
-```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 function maxArea(height) {
   let left = 0;
@@ -69,10 +42,8 @@ function maxArea(height) {
   return waterVolume;
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 function maxArea(height: number[]): number {
   let left = 0;
@@ -91,9 +62,28 @@ function maxArea(height: number[]): number {
   return waterVolume;
 }
 ```
+{% /tabitem %}
+{% tabitem label="Go" %}
+```go
+func maxArea(height []int) int {
+    var left, maxVol int
+    right := len(height) - 1
 
-  </TabItem>
-</Tabs>
+    for right > left {
+        w := right - left
+        h := min(height[left], height[right])
+        maxVol = max(w*h, maxVol)
+        if height[left] > height[right] {
+            right --
+        } else {
+            left ++
+        }
+    }
+    return maxVol
+}
+```
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 

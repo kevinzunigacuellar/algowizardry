@@ -3,11 +3,7 @@ title: Maximum Depth of Binary Tree
 description: Solution of Maximum Depth of Binary Tree
 difficulty: easy
 problemUrl: https://leetcode.com/problems/maximum-depth-of-binary-tree/
-tags:
-  - "tree"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given the root of a binary tree, return its maximum depth.
 
@@ -23,8 +19,8 @@ Use a recursive function to calculate the maximum depth of the tree. The functio
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Python">
+{% tabs syncKey="language" %}
+{% tabitem label="Python" %}
 
 ```python
 # Definition for a binary tree node.
@@ -48,9 +44,8 @@ class Solution(object):
 
 
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -59,5 +54,5 @@ class Solution(object):
 
 ## Complexity Analysis
 
-- Time Complexity: `O(n)` - because we visit each node exactly once.
-- Space Complexity: `O(n)` - in the worst case, the space complexity is `O(n)` due to the recursive call stack.
+- The time complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.
+- The space complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.

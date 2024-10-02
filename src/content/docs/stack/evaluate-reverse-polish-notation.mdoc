@@ -3,11 +3,7 @@ title: Evaluate Reverse Polish Notation
 description: Solution for Evaluate Reverse Polish Notation Leetcode Problem
 difficulty: medium
 problemUrl: https://leetcode.com/problems/evaluate-reverse-polish-notation/
-tags:
-  - "stack"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 You are given an array of strings tokens that represents an arithmetic expression in a [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
 
@@ -38,9 +34,8 @@ Use a stack to store the numbers. When we encounter an operator, we pop the last
 
 ## Implementation
 
-<Tabs syncKey="language">
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 function evalRPN(tokens) {
   const operators = {
@@ -64,10 +59,8 @@ function evalRPN(tokens) {
   return stack.pop();
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
 ```ts
 type Operator = "+" | "-" | "*" | "/";
 type OperatorFunction = (a: number, b: number) => number;
@@ -96,10 +89,8 @@ function evalRPN(tokens: string[]): number {
   return stack.pop()!;
 }
 ```
-
-  </TabItem>
-  <TabItem label="Python">
-
+{% /tabitem %}
+{% tabitem label="Python" %}
 ```py
 class Solution:
     def add(self, a: int, b: int):
@@ -135,9 +126,8 @@ class Solution:
         return stack.pop()
 
 ```
-  </TabItem>
-  <TabItem label="C++">
-
+{% /tabitem %}
+{% tabitem label="C++" %}
 ```cpp
 
 #include <stack>
@@ -184,9 +174,8 @@ public:
 };
 
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -199,5 +188,5 @@ public:
 
 ## Complexity Analysis
 
-- **Time Complexity:** `O(n)` - You need to iterate over all the tokens.
-- **Space Complexity:** `O(n)` - In the worst case, you need to store all the tokens in the stack.
+- The time complexity is `O(n)` because we iterate over all the tokens.
+- The space complexity is `O(n)` because we use a stack to store the numbers.

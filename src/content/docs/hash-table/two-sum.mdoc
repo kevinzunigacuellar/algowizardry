@@ -3,11 +3,7 @@ title: Two Sum
 description: Solution to Two Sum
 difficulty: easy
 problemUrl: https://leetcode.com/problems/two-sum/
-tags:
-  - "hash table"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
 
@@ -27,9 +23,8 @@ Use a key-value store to record the index of each element in `nums` as we iterat
 
 ## Implementation
 
-<Tabs syncKey="language">
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 /**
  * @param {number[]} nums
@@ -44,10 +39,9 @@ var twoSum = function (nums, target) {
   }
 };
 ```
+{% /tabitem %}
 
-  </TabItem>
-  <TabItem label="TypeScript">
-
+{% tabitem label="TypeScript" %}
 ```ts
 function twoSum(nums: number[], target: number): number[] {
   const m = new Map();
@@ -57,27 +51,22 @@ function twoSum(nums: number[], target: number): number[] {
   }
 }
 ```
-
-  </TabItem>
-  <TabItem label="Go">
-
+{% /tabitem %}
+{% tabitem label="Go" %}
 ```go
 func twoSum(nums []int, target int) []int {
-	m := make(map[int]int)
-	for i, num := range nums {
-		if idx, ok := m[num]; ok {
-			return []int{idx, i}
-		}
-		m[target-num] = i
-	}
-	return nil
+    m := make(map[int]int)
+    for i, num := range nums {
+        if idx, ok := m[num]; ok {
+            return []int{idx, i}
+        }
+        m[target-num] = i
+    }
+    return nil
 }
 ```
-
-  </TabItem>
-
-  <TabItem label="Python">
-
+{% /tabitem %}
+{% tabitem label="Python" %}
 ```py
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -88,10 +77,8 @@ class Solution:
             m[target - num] = i
 
 ```
-
-  </TabItem>
-    <TabItem label="C++">
-
+{% /tabitem %}
+{% tabitem label="C++" %}
 ```cpp
 class Solution {
 public:
@@ -109,9 +96,8 @@ public:
     }
 };
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -121,5 +107,5 @@ public:
 
 ## Complexity Analysis
 
-- The time complexity of this algorithm is O(n) because we iterate through the array once.
-- The space complexity of this algorithm is O(n) because we store the index of each element in a key-value store.
+- The time complexity of this algorithm is `O(n)` where `n` is the number of elements in the input array `nums`.
+- The space complexity of this algorithm is `O(n)` where `n` is the number of elements in the input array `nums`. This is because we store the index of each element in a key-value store.

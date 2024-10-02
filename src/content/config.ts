@@ -13,7 +13,6 @@ const difficulties = z.enum(["easy", "medium", "hard"]);
 const schema = z.object({
   problemUrl: z.string().url().optional(),
   difficulty: difficulties.optional(),
-  tags: z.array(tags).optional(),
 });
 
 export const collections = {

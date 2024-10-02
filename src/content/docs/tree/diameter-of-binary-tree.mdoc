@@ -3,11 +3,7 @@ title: Diameter of Binary Tree
 description: Solution of Diameter of Binary Tree
 difficulty: easy
 problemUrl: https://leetcode.com/problems/diameter-of-binary-tree/
-tags:
-  - "tree"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given the `root` of a binary tree, return the diameter of the binary tree.
 
@@ -21,9 +17,8 @@ Use a recursive function to calculate the height of the tree. The function will 
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Python">
-
+{% tabs syncKey="language" %}
+{% tabitem label="Python" %}
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -47,9 +42,8 @@ class Solution:
         return max(left_height, right_height) + 1
 
 ```
-
-  </TabItem>
-</Tabs>
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -60,5 +54,5 @@ class Solution:
 
 ## Complexity Analysis
 
-- **Time complexity**: O(n) - because we visit each node exactly once.
-- **Space complexity**: O(n) due to the recursive call stack.
+- The time complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.
+- The space complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.

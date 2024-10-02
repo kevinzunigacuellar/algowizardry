@@ -3,11 +3,7 @@ title: Invert Binary Tree
 description: Solution of Invert Binary Tree
 difficulty: easy
 problemUrl: https://leetcode.com/problems/invert-binary-tree/
-tags:
-  - "tree"
 ---
-
-import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Given the `root` of a binary tree, invert the tree, and return _its root_.
 
@@ -24,28 +20,8 @@ Use a recursive function to invert the tree. The function will swap the left and
 
 ## Implementation
 
-<Tabs>
-  <TabItem label="Go">
-
-```go
-func invertTree(root *TreeNode) *TreeNode {
-  if root == nil {
-    return root
-  }
-
-  left := invertTree(root.Left)
-  right := invertTree(root.Right)
-
-  root.Left = right
-  root.Right = left
-
-  return root
-}
-```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-
+{% tabs syncKey="language" %}
+{% tabitem label="JavaScript" %}
 ```js
 function invertTree(root) {
   if (root === null) {
@@ -61,11 +37,9 @@ function invertTree(root) {
   return root;
 }
 ```
-
-  </TabItem>
-  <TabItem label="TypeScript">
-
-```js
+{% /tabitem %}
+{% tabitem label="TypeScript" %}
+```ts
 function invertTree(root: TreeNode | null): TreeNode | null {
   if (root === null) {
     return null;
@@ -80,9 +54,25 @@ function invertTree(root: TreeNode | null): TreeNode | null {
   return root;
 }
 ```
+{% /tabitem %}
+{% tabitem label="Go" %}
+```go
+func invertTree(root *TreeNode) *TreeNode {
+  if root == nil {
+    return root
+  }
 
-  </TabItem>
-</Tabs>
+  left := invertTree(root.Left)
+  right := invertTree(root.Right)
+
+  root.Left = right
+  root.Right = left
+
+  return root
+}
+```
+{% /tabitem %}
+{% /tabs %}
 
 ## Pseudocode
 
@@ -93,5 +83,5 @@ function invertTree(root: TreeNode | null): TreeNode | null {
 
 ## Complexity Analysis
 
-- Time Complexity: `O(n)` - You need to traverse all the nodes in the tree.
-- Space Complexity: `O(n)` - The space used by the call stack during recursion.
+- The time complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.
+- The space complexity of this algorithm is O(N), where N is the number of nodes in the binary tree.
