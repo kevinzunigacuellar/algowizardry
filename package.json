@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.11.4",
-    "@astrojs/starlight": "^0.28.2",
+    "@astrojs/starlight": "^0.28.6",
     "@astrojs/starlight-markdoc": "^0.1.0",
-    "astro": "^4.15.10",
-    "astro-og-canvas": "^0.5.3",
+    "astro": "^4.16.16",
+    "astro-og-canvas": "^0.5.4",
     "canvaskit-wasm": "^0.39.1",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "prettier-plugin-astro": "^0.14.1"
   }
 }

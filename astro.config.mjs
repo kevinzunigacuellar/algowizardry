@@ -58,5 +58,5 @@ export default defineConfig({
     }),
     markdoc(),
   ],
-  site: "https://algowizardry.kevinzunigacuellar.com",
+  site: "https://algowizardry.kevinzc.com",
 });
