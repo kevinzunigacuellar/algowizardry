@@ -1,13 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { docsSchema } from "@astrojs/starlight/schema";
+import { docsLoader } from "@astrojs/starlight/loaders";
 
-const tags = z.enum([
-  "two pointers",
-  "hash table",
-  "stack",
-  "tree",
-  "backtracking",
-]);
 const difficulties = z.enum(["easy", "medium", "hard"]);
 
 const schema = z.object({
@@ -18,5 +12,6 @@ const schema = z.object({
 export const collections = {
   docs: defineCollection({
     schema: docsSchema({ extend: schema }),
+    loader: docsLoader(),
   }),
 };
