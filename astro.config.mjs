@@ -55,6 +55,10 @@ export default defineConfig({
         MarkdownContent: "./src/components/MarkdownContentWrapper.astro",
         Head: "./src/components/Head.astro",
       },
+      expressiveCode: {
+        themes: ["one-dark-pro", "github-light"],
+        useStarlightUiThemeColors: true,
+      },
     }),
     markdoc(),
   ],
