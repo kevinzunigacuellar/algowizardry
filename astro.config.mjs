@@ -56,7 +56,7 @@ export default defineConfig({
         Head: "./src/components/Head.astro",
       },
       expressiveCode: {
-        themes: ["one-dark-pro", "github-light"],
+        themes: ["houston", "github-light"],
         useStarlightUiThemeColors: true,
       },
     }),

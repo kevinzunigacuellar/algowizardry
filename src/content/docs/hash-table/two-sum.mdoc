@@ -32,23 +32,22 @@ Use a key-value store to record the index of each element in `nums` as we iterat
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  const m = new Map();
-  for (let i = 0; i < nums.length; i++) {
-    if (m.has(nums[i])) return [m.get(nums[i]), i];
-    m.set(target - nums[i], i);
-  }
+    const m = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (m.has(nums[i])) return [m.get(nums[i]), i];
+        m.set(target - nums[i], i);
+    }
 };
 ```
 {% /tabitem %}
-
 {% tabitem label="TypeScript" %}
 ```ts
 function twoSum(nums: number[], target: number): number[] {
-  const m = new Map();
-  for (let i = 0; i < nums.length; i++) {
-    if (m.has(nums[i])) return [m.get(nums[i]), i];
-    m.set(target - nums[i], i);
-  }
+    const m = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (m.has(nums[i])) return [m.get(nums[i]), i];
+        m.set(target - nums[i], i);
+    }
 }
 ```
 {% /tabitem %}
@@ -97,6 +96,24 @@ public:
 };
 ```
 {% /tabitem %}
+{% tabitem label="Java" %}
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> memory = new HashMap<>();
+        for (int i = 0; i < nums.length; ++i) {
+            int num = nums[i];
+            int complement = target - num;
+            if (memory.containsKey(complement)) {
+                return new int[]{memory.get(complement), i};
+            }
+            memory.put(num, i);
+        }
+        return new int[]{};
+    }
+}
+```
+{% /tabitem %}
 {% /tabs %}
 
 ## Pseudocode
@@ -104,8 +121,3 @@ public:
 1. Initialize a key-value store to record the index of each element in `nums`.
 2. Iterate through `nums` and for each element, check if the key-value store contains the difference between the current element and the target.
 3. If it does, return the current index and the index of the difference.
-
-## Complexity Analysis
-
-- The time complexity of this algorithm is `O(n)` where `n` is the number of elements in the input array `nums`.
-- The space complexity of this algorithm is `O(n)` where `n` is the number of elements in the input array `nums`. This is because we store the index of each element in a key-value store.

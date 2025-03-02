@@ -1,9 +1,8 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/MarkdownContent.astro";
 import { Icon } from "@astrojs/starlight/components";
 
-const { difficulty, problemUrl } = Astro.props.entry.data;
+const { difficulty, problemUrl } = Astro.locals.starlightRoute.entry.data;
 ---
 
 <Default {...Astro.props}>
