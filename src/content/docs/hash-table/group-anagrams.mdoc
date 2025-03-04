@@ -28,28 +28,28 @@ Use a hash table to store the anagrams. For each string, sort the characters and
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {
-  const anagrams = new Map();
-  for (const s of strs) {
-    const sortedWord = s.split("").sort().join("");
-    const wordAnagrams = anagrams.get(sortedWord) ?? [];
-    wordAnagrams.push(s);
-    anagrams.set(sortedWord, wordAnagrams);
-  }
-  return Array.from(anagrams.values());
+    const anagrams = new Map();
+    for (const s of strs) {
+        const sortedWord = s.split("").sort().join("");
+        const wordAnagrams = anagrams.get(sortedWord) ?? [];
+        wordAnagrams.push(s);
+        anagrams.set(sortedWord, wordAnagrams);
+    }
+    return Array.from(anagrams.values());
 };
 ```
 {% /tabitem %}
 {% tabitem label="TypeScript" %}
 ```ts
 function groupAnagrams(strs: string[]): string[][] {
-  const anagrams = new Map<string, string[]>();
-  for (const s of strs) {
-    const sortedWord = s.split("").sort().join("");
-    const wordAnagrams = anagrams.get(sortedWord) ?? [];
-    wordAnagrams.push(s);
-    anagrams.set(sortedWord, wordAnagrams);
-  }
-  return Array.from(anagrams.values());
+    const anagrams = new Map<string, string[]>();
+    for (const s of strs) {
+        const key = s.split("").sort().join("");
+        const wordAnagrams = anagrams.get(key) ?? [];
+        wordAnagrams.push(s);
+        anagrams.set(key, wordAnagrams);
+    }
+    return Array.from(anagrams.values());
 }
 ```
 {% /tabitem %}
@@ -58,20 +58,20 @@ function groupAnagrams(strs: string[]): string[][] {
 import "sort"
 
 func groupAnagrams(strs []string) [][]string {
-  anagrams := make(map[string][]string)
-  for _, s := range strs {
-    bytes := []byte(s)
-    sort.Slice(bytes, func(i, j int) bool { return bytes[i] < bytes[j] })
-    hash := string(bytes)
-    anagrams[hash] = append(anagrams[hash], s)
-  }
+    anagrams := make(map[string][]string)
+    for _, s := range strs {
+        bytes := []byte(s)
+        sort.Slice(bytes, func(i, j int) bool { return bytes[i] < bytes[j] })
+        key := string(bytes)
+        anagrams[key] = append(anagrams[key], s)
+    }
 
-  values := make([][]string, 0)
-  for _, v := range anagrams {
-    values = append(values, v)
-  }
+    values := make([][]string, 0)
+    for _, v := range anagrams {
+        values = append(values, v)
+    }
 
-  return values
+    return values
 }
 ```
 {% /tabitem %}
@@ -112,17 +112,20 @@ public:
 };
 ```
 {% /tabitem %}
+{% tabitem label="Java" %}
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> m = new HashMap<>();
+        for (String item : strs) {
+            char[] charArr = item.toCharArray();
+            Arrays.sort(charArr);
+            String key = new String(charArr);
+            m.computeIfAbsent(key, k -> new ArrayList<>()).add(item);
+        }
+        return new ArrayList(m.values());
+    }
+}
+```
+{% /tabitem %}
 {% /tabs %}
-
-## Pseudocode
-
-1. Create a map to store the anagrams.
-2. Loop through each string in the input array.
-3. Sort the string and use it as a key in the map.
-4. Add the string to the array of anagrams for the key.
-5. Return the values of the map as an array.
-
-## Complexity Analysis
-
-- The time complexity of this algorithm is `O(n * m * log m)`, where n is the number of strings and m is the length of the longest string. The sorting operation takes `O(m * log m)` time.
-- The space complexity of this algorithm is `O(n * m)`, where n is the number of strings and m is the length of the longest string. We are storing the sorted strings in the map.
