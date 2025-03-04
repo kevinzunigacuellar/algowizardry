@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://algowizardry.kevinzc.com/sitemap-index.xml
