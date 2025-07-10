@@ -12,9 +12,13 @@ export default defineConfig({
         dark: "/src/assets/logo-dark.svg",
         replacesTitle: true,
       },
-      social: {
-        github: "https://github.com/kevinzunigacuellar/algowizardry",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/kevinzunigacuellar/algowizardry",
+        },
+      ],
       sidebar: [
         {
           label: "Backtracking",
@@ -47,7 +51,7 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ["./src/styles/custom.css"],
+      customCss: ["./src/styles/custom.css", "@fontsource/ibm-plex-mono"],
       editLink: {
         baseUrl: "https://github.com/kevinzunigacuellar/algowizardry/edit/main",
       },
@@ -57,6 +61,10 @@ export default defineConfig({
       },
       expressiveCode: {
         themes: ["houston", "github-light"],
+        styleOverrides: {
+          codeFontFamily:
+            "'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        },
         useStarlightUiThemeColors: true,
       },
     }),
