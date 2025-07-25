@@ -18,7 +18,8 @@
     "astro": "^5.6.1",
     "astro-og-canvas": "^0.7.0",
     "canvaskit-wasm": "^0.40.0",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "wrangler": "^4.26.0"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
